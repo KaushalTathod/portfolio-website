@@ -1,0 +1,77 @@
+<%- include('header')%>
+    <!-- ===== PORTFOLIO SECTION ===== -->
+    <section id="portfolio" class="portfolio">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Portfolio</span>
+                <h2 class="section-title">Featured Projects</h2>
+                <p class="section-desc">A selection of my recent work across various domains</p>
+            </div>
+            
+            <!-- Filter Buttons -->
+            <div class="portfolio-filter">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="web">Web Apps</button>
+                <button class="filter-btn" data-filter="design">Design</button>
+                <button class="filter-btn" data-filter="mobile">Mobile</button>
+            </div>
+            
+            <!-- Portfolio Grid -->
+            <div class="portfolio-grid">
+                <div class="portfolio-item" data-category="web">
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop" alt="Project 1" />
+                    <div class="portfolio-overlay">
+                        <h3>Project Name</h3>
+                        <p>Web Development</p>
+                        <a href="#" class="portfolio-link"><i class="fas fa-search-plus"></i></a>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item" data-category="design">
+                    <img src="https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=600&h=400&fit=crop" alt="Project 2" />
+                    <div class="portfolio-overlay">
+                        <h3>Project Name</h3>
+                        <p>UI/UX Design</p>
+                        <a href="#" class="portfolio-link"><i class="fas fa-search-plus"></i></a>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item" data-category="mobile">
+                    <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=600&h=400&fit=crop" alt="Project 3" />
+                    <div class="portfolio-overlay">
+                        <h3>Project Name</h3>
+                        <p>Mobile App</p>
+                        <a href="#" class="portfolio-link"><i class="fas fa-search-plus"></i></a>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item" data-category="web">
+                    <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600&h=400&fit=crop" alt="Project 4" />
+                    <div class="portfolio-overlay">
+                        <h3>Project Name</h3>
+                        <p>Web Application</p>
+                        <a href="#" class="portfolio-link"><i class="fas fa-search-plus"></i></a>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item" data-category="design">
+                    <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&h=400&fit=crop" alt="Project 5" />
+                    <div class="portfolio-overlay">
+                        <h3>Project Name</h3>
+                        <p>Brand Identity</p>
+                        <a href="#" class="portfolio-link"><i class="fas fa-search-plus"></i></a>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item" data-category="web">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop" alt="Project 6" />
+                    <div class="portfolio-overlay">
+                        <h3>Project Name</h3>
+                        <p>Dashboard</p>
+                        <a href="#" class="portfolio-link"><i class="fas fa-search-plus"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+<%- include('footer')%>

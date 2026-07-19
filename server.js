@@ -1,10 +1,13 @@
-var express=require('express');
-var app=express();
+var express = require('express');
+var app = express();
 
-//Website Router Import
-const websiterouter=require("./router/website.js");
-app.use('/',websiterouter);
+//Public Access
+app.use(express.static('public'));
 
-app.listen(3000,()=>{
+// Website Router Import
+const websiterouter = require("./router/website.js");
+app.use('/', websiterouter);
+
+app.listen(3000, () => {
     console.log('click http://localhost:3000');
 })
