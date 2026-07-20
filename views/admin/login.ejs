@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login - Portfolio Admin</title>
+    
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/admin/style.css" />
+    <link rel="stylesheet" href="/admin/responsive.css" />
+  
+</head>
+<body class="login-page">
+    <div class="login-wrapper">
+        <div class="login-container">
+            <div class="login-brand text-center mb-4">
+                <i class="fas fa-code fa-3x text-primary"></i>
+                <h2 class="mt-2 fw-bold">Portfolio<span class="text-primary">Admin</span></h2>
+                <p class="text-muted">Sign in to your dashboard</p>
+            </div>
+            
+            <div class="login-card card shadow-lg border-0">
+                <div class="card-body p-5">
+                    <!-- Alert Messages -->
+                    <div id="loginAlert" class="alert alert-danger d-none" role="alert">
+                        <i class="fas fa-exclamation-circle me-2"></i>
+                        <span id="alertMessage">Invalid credentials</span>
+                    </div>
+                    
+                    <form id="loginForm" action="/admin/check_login" method="post" novalidate>
+                        <div class="mb-3">
+                            <label for="username" class="form-label fw-semibold">
+                                <i class="fas fa-user me-2 text-primary"></i>Username or Email
+                            </label>
+                            <input type="text" class="form-control form-control-lg" name="username" id="username" 
+                                   placeholder="Enter username or email" required />
+                            <div class="invalid-feedback">Please enter your username or email</div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="password"   class="form-label fw-semibold">
+                                <i class="fas fa-lock me-2 text-primary"></i>Password
+                            </label>
+                            <div class="input-group">
+                                <input type="password" name="pass" class="form-control form-control-lg" id="password" 
+                                       placeholder="Enter your password" required />
+                                <button class="btn btn-outline-secondary" type="button" id="togglePassword">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                            <div class="invalid-feedback">Please enter your password</div>
+                        </div>
+                        
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="rememberMe" />
+                                <label class="form-check-label" for="rememberMe">
+                                    Remember Me
+                                </label>
+                            </div>
+                            <a href="forgot-password.html" class="text-decoration-none text-primary">
+                                Forgot Password?
+                            </a>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary btn-lg w-100" id="loginBtn">
+                            <span id="loginText">Sign In</span>
+                            <span id="loginSpinner" class="spinner-border spinner-border-sm d-none" role="status"></span>
+                        </button>
+                    </form>
+                    
+                    <div class="text-center mt-4">
+                        <p class="text-muted mb-0">
+                            <i class="fas fa-shield-alt me-1 text-primary"></i>
+                            Secure Login • SSL Encrypted
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-4">
+                <p class="text-muted small">
+                    &copy; 2025 Portfolio Admin. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="admin/script.js"></script>
+</body>
+</html>
