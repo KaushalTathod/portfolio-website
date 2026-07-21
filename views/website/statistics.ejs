@@ -4,80 +4,66 @@
         <div class="container">
             <div class="stat-grid">
                 <div class="stat-item">
-                    <span class="stat-number" data-count="120">0</span>
+                    <span class="stat-number" data-count="<%= (about && about.aprojectcom) ? about.aprojectcom : 0 %>">0</span>
                     <span class="stat-label">Projects Completed</span>
                 </div>
                 <div class="stat-item">
-                    <span class="stat-number" data-count="85">0</span>
+                    <span class="stat-number" data-count="<%= (about && about.ahappyclients) ? about.ahappyclients : 0 %>">0</span>
                     <span class="stat-label">Happy Clients</span>
                 </div>
                 <div class="stat-item">
-                    <span class="stat-number" data-count="15">0</span>
+                    <span class="stat-number" data-count="<%= (about && about.aaward) ? about.aaward : 0 %>">0</span>
                     <span class="stat-label">Awards Won</span>
                 </div>
                 <div class="stat-item">
-                    <span class="stat-number" data-count="4">0</span>
+                    <span class="stat-number" data-count="<%= (about && about.ayear) ? about.ayear : 0 %>">0</span>
                     <span class="stat-label">Years Experience</span>
                 </div>
             </div>
         </div>
     </section>
 
+    <section class="resume">
+        <div class="container">
+            <div class="resume-grid">
                 <!-- Experience Timeline -->
                 <div class="timeline-container">
                     <h3>Experience</h3>
                     
                     <div class="timeline">
-                        <div class="timeline-item">
-                            <div class="timeline-dot"></div>
-                            <div class="timeline-content">
-                                <span class="timeline-date">2022 - Present</span>
-                                <h4>Senior Developer</h4>
-                                <p class="timeline-company">Creative Digital Agency</p>
-                                <p>Leading development of complex web applications and mentoring junior developers.</p>
-                            </div>
-                        </div>
-                        
-                        <div class="timeline-item">
-                            <div class="timeline-dot"></div>
-                            <div class="timeline-content">
-                                <span class="timeline-date">2020 - 2022</span>
-                                <h4>Front-End Developer</h4>
-                                <p class="timeline-company">TechStart Studio</p>
-                                <p>Built responsive, user-centric interfaces for diverse client portfolios.</p>
-                            </div>
-                        </div>
-                        
-                        <div class="timeline-item">
-                            <div class="timeline-dot"></div>
-                            <div class="timeline-content">
-                                <span class="timeline-date">2018 - 2020</span>
-                                <h4>Junior Designer</h4>
-                                <p class="timeline-company">Design Lab Inc.</p>
-                                <p>Assisted in creating visual identities and UI components for startup products.</p>
-                            </div>
-                        </div>
+                        <% if (experience && experience.length) { %>
+                            <% for (let i = 0; i < experience.length; i++) { %>
+                                <div class="timeline-item">
+                                    <div class="timeline-dot"></div>
+                                    <div class="timeline-content">
+                                        <span class="timeline-date"><%= experience[i].exp_duration %></span>
+                                        <h4><%= experience[i].exp_position %></h4>
+                                        <p class="timeline-company"><%= experience[i].exp_company %></p>
+                                        <p><%= experience[i].exp_desc %></p>
+                                    </div>
+                                </div>
+                            <% } %>
+                        <% } else { %>
+                            <p style="margin:0; opacity:0.8;">No experience found.</p>
+                        <% } %>
                     </div>
                     
                     <h3 style="margin-top: 40px;">Education</h3>
                     <div class="timeline">
-                        <div class="timeline-item">
-                            <div class="timeline-dot"></div>
-                            <div class="timeline-content">
-                                <span class="timeline-date">2016 - 2018</span>
-                                <h4>MSc in Computer Science</h4>
-                                <p class="timeline-company">Stanford University</p>
-                            </div>
-                        </div>
-                        
-                        <div class="timeline-item">
-                            <div class="timeline-dot"></div>
-                            <div class="timeline-content">
-                                <span class="timeline-date">2012 - 2016</span>
-                                <h4>BSc in Web Design</h4>
-                                <p class="timeline-company">New York Academy</p>
-                            </div>
-                        </div>
+                        <% if (education && education.length) { %>
+                            <% for (let i = 0; i < education.length; i++) { %>
+                                <div class="timeline-item">
+                                    <div class="timeline-dot"></div>
+                                    <div class="timeline-content">
+                                        <span class="timeline-date"><%= education[i].eyear %></span>
+                                        <h4><%= education[i].edegree %></h4>
+                                        <p class="timeline-company"><%= education[i].eunivercity %></p>
+                                    </div>
+                                </div>
+                            <% } %>
+                        <% } else { %>
+                            <p style="margin:0; opacity:0.8;">No education found.</p>
+                        <% } %>
                     </div>
                 </div>
             </div>

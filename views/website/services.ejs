@@ -1,63 +1,36 @@
 <%- include('header')%>
-    
-    <!-- ===== SERVICES SECTION ===== -->
-    <section id="services" class="services">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag">Services</span>
-                <h2 class="section-title">What I Offer</h2>
-                <p class="section-desc">Expert solutions tailored to bring your vision to life</p>
+
+<!-- ===== SERVICES SECTION ===== -->
+<section id="services" class="services">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-tag">Services</span>
+            <h2 class="section-title">What I Offer</h2>
+            <p class="section-desc">Expert solutions tailored to bring your vision to life</p>
+        </div>
+
+        <% if (services && services.length) { %>
+            <div class="services-grid">
+                <% for (let i = 0; i < services.length; i++) { %>
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas <%= services[i].ser_icon %>"></i>
+                        </div>
+                        <h3><%= services[i].ser_technology || services[i].service_name || services[i].tech_name || 'Service' %></h3>
+                        <p><%= services[i].ser_discription || services[i].description || services[i].ser_description || '' %></p>
+                    </div>
+                <% } %>
             </div>
-            
+        <% } else { %>
             <div class="services-grid">
                 <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-code"></i>
-                    </div>
-                    <h3>Web Development</h3>
-                    <p>Building responsive, high-performance websites with modern technologies and best practices.</p>
-                </div>
-                
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-pen-fancy"></i>
-                    </div>
-                    <h3>UI/UX Design</h3>
-                    <p>Designing intuitive interfaces that deliver exceptional user experiences across all devices.</p>
-                </div>
-                
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-mobile-alt"></i>
-                    </div>
-                    <h3>Mobile Apps</h3>
-                    <p>Creating native and cross-platform mobile applications with smooth performance and beautiful UI.</p>
-                </div>
-                
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-search"></i>
-                    </div>
-                    <h3>SEO Optimization</h3>
-                    <p>Improving visibility and ranking through on-page optimization and technical SEO strategies.</p>
-                </div>
-                
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-cloud"></i>
-                    </div>
-                    <h3>Cloud Solutions</h3>
-                    <p>Deploying scalable cloud architectures to ensure reliability, security, and performance.</p>
-                </div>
-                
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-headset"></i>
-                    </div>
-                    <h3>Consulting</h3>
-                    <p>Providing strategic guidance on technology stacks, architecture, and digital transformation.</p>
+                    <p style="opacity:0.8; margin:0;">No services found.</p>
                 </div>
             </div>
-        </div>
-    </section>
+        <% } %>
+
+    </div>
+</section>
+
 <%- include('footer')%>
+

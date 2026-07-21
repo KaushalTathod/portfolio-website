@@ -10,8 +10,8 @@
     <meta name="robots" content="index, follow" />
     
     <!-- CSS Files -->
-    <link rel="stylesheet" href="website/style.css" />
-    <link rel="stylesheet" href="responsive.css" />
+    <link rel="stylesheet" href="/website/style.css" />
+    <link rel="stylesheet" href="/responsive.css" />
     
     <!-- Font Awesome (for icons) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
@@ -35,7 +35,9 @@
     <header id="navbar">
         <div class="container nav-container">
             <div class="logo">
-                <a href="#">Alex<span>Rivera</span></a>
+                <a href="/">
+                    <img src="/<%= contact.logo %>" alt="Logo" width="150" height="50">
+                </a>
             </div>
             
             <!-- Mobile Menu Toggle -->
@@ -53,11 +55,9 @@
                     <li><a href="/resume">Resume</a></li>
                     <li><a href="/services">Services</a></li>
                     <li><a href="/blog">Blog</a></li>
-                    <!-- <li><a href="/statistics">Statistics</a></li> -->
-                    <li><a href="/testimonials">Testimonials</a></li>
-                    <li><a href="/portfolio">Portfolio</a></li>
+                    <li><a href="/portfolio">Projects</a></li>
                     <li><a href="/contact">Contact</a></li>
-                    <li><a href="/admin/login">Admin</a></li>
+                   
                 </ul>
                 
                 <!-- Dark Mode Toggle -->

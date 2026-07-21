@@ -9,35 +9,21 @@
             </div>
             
             <div class="blog-grid">
-                <article class="blog-card">
-                    <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600&h=350&fit=crop" alt="Blog 1" />
-                    <div class="blog-content">
-                        <span class="blog-date">June 15, 2025</span>
-                        <h3>Building Scalable Web Applications in 2025</h3>
-                        <p>Explore best practices and modern tools for creating robust, scalable web apps.</p>
-                        <a href="#" class="read-more">Read More →</a>
-                    </div>
-                </article>
-                
-                <article class="blog-card">
-                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=350&fit=crop" alt="Blog 2" />
-                    <div class="blog-content">
-                        <span class="blog-date">June 8, 2025</span>
-                        <h3>Designing for Accessibility: Why It Matters</h3>
-                        <p>Inclusive design principles that improve user experience for everyone.</p>
-                        <a href="#" class="read-more">Read More →</a>
-                    </div>
-                </article>
-                
-                <article class="blog-card">
-                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=350&fit=crop" alt="Blog 3" />
-                    <div class="blog-content">
-                        <span class="blog-date">June 1, 2025</span>
-                        <h3>10 Tips for Remote Collaboration Success</h3>
-                        <p>Strategies to enhance teamwork and productivity in distributed teams.</p>
-                        <a href="#" class="read-more">Read More →</a>
-                    </div>
-                </article>
+                <% if (blog && blog.length) { %>
+                    <% for (let i = 0; i < blog.length; i++) { %>
+                       <article class="blog-card"onclick="window.location.href='/blog/<%= blog[i].bid %>'"style="cursor:pointer;">
+                        <img src="/<%= blog[i].bimg %>" alt="<%= blog[i].btitle %>" />
+
+                        <div class="blog-content">
+                            <span class="blog-date"><%= blog[i].bdate %></span>
+                            <h3><%= blog[i].btitle %></h3>
+                            <!-- <p><%= blog[i].bcontent %></p> -->
+                        </div>
+                    </article>
+                    <% } %>
+                <% } else { %>
+                    <p style="margin:0; opacity:0.8;">No blog posts found.</p>
+                <% } %>
             </div>
         </div>
     </section>

@@ -10,37 +10,40 @@
             
             <div class="about-grid">
                 <div class="about-image">
-                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=700&fit=crop&crop=face" alt="Alex Rivera" />
+                    <% if (about && about.aimg) { %>
+                        <img src="/<%= about.aimg %>" alt="<%= about.aname || 'About' %>" />
+                    <% } else { %>
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=700&fit=crop&crop=face" alt="About" />
+                    <% } %>
                     <div class="about-experience-badge">
-                        <span>6+</span>
+                        <span><%= (about && about.aexperience) ? about.aexperience : '0' %></span>
                         Years Experience
                     </div>
                 </div>
                 <div class="about-content">
-                    <h3>Creative Developer &amp; UI/UX Designer</h3>
-                    <p>I'm a passionate creative developer based in New York, specializing in building exceptional digital experiences that are both functional and visually stunning.</p>
-                    <p>With a background in both design and development, I bridge the gap between aesthetics and technology. I believe that great design is not just about how it looks, but how it works.</p>
+                    <h3><%= (about && about.aprofession) ? about.aprofession : 'Creative Developer' %></h3>
+                    <p><%= (about && about.asummary) ? about.asummary : '' %></p>
                     
                     <div class="about-info-grid">
                         <div class="info-item">
                             <span class="info-label">Name:</span>
-                            <span class="info-value">Alex Rivera</span>
+                            <span class="info-value"><%= (about && about.aname) ? about.aname : '-' %></span>
                         </div>
                         <div class="info-item">
                             <span class="info-label">Email:</span>
-                            <span class="info-value">alex@example.com</span>
+                            <span class="info-value"><%= (about && about.aemail) ? about.aemail : '-' %></span>
                         </div>
                         <div class="info-item">
                             <span class="info-label">Location:</span>
-                            <span class="info-value">New York, USA</span>
+                            <span class="info-value"><%= (about && about.alocation) ? about.alocation : '-' %></span>
                         </div>
                         <div class="info-item">
                             <span class="info-label">Freelance:</span>
-                            <span class="info-value">Available</span>
+                            <span class="info-value"><%= (about && about.afreelance) ? about.afreelance : '-' %></span>
                         </div>
                     </div>
                     
-                    <a href="#contact" class="btn btn-primary">Get In Touch</a>
+                    <a href="/contact" class="btn btn-primary">Get In Touch</a>
                 </div>
             </div>
         </div>
@@ -51,19 +54,19 @@
         <div class="container">
             <div class="stat-grid">
                 <div class="stat-item">
-                    <span class="stat-number" data-count="120">0</span>
+                    <span class="stat-number" data-count="<%= (about && about.aprojectcom) ? about.aprojectcom : 0 %>">0</span>
                     <span class="stat-label">Projects Completed</span>
                 </div>
                 <div class="stat-item">
-                    <span class="stat-number" data-count="85">0</span>
+                    <span class="stat-number" data-count="<%= (about && about.ahappyclients) ? about.ahappyclients : 0 %>">0</span>
                     <span class="stat-label">Happy Clients</span>
                 </div>
                 <div class="stat-item">
-                    <span class="stat-number" data-count="15">0</span>
+                    <span class="stat-number" data-count="<%= (about && about.aaward) ? about.aaward : 0 %>">0</span>
                     <span class="stat-label">Awards Won</span>
                 </div>
                 <div class="stat-item">
-                    <span class="stat-number" data-count="4">0</span>
+                    <span class="stat-number" data-count="<%= (about && about.ayear) ? about.ayear : 0 %>">0</span>
                     <span class="stat-label">Years Experience</span>
                 </div>
             </div>

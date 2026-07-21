@@ -1,0 +1,59 @@
+
+<%- include('header') %>
+
+<!-- ===== BLOG DETAILS SECTION ===== -->
+<section class="blog">
+    <div class="container">
+
+        <!-- Section Header -->
+        <div class="section-header">
+            <span class="section-tag">Blog</span>
+            <h2 class="section-title"><%= blog.btitle %></h2>
+            <p class="section-desc"><%= blog.bdate %></p>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+
+                <!-- Blog Image -->
+                <img
+                    src="/<%= blog.bimg %>"
+                    alt="<%= blog.btitle %>"
+                    class="img-fluid rounded mb-4"
+                    style="width:100%; max-height:500px; object-fit:cover;">
+
+                <!-- Blog Card -->
+                <article class="blog-card">
+
+                    <div class="blog-content">
+
+                        <span class="blog-date">
+                            <%= blog.bdate %>
+                        </span>
+
+                        <h3>
+                            <%= blog.btitle %>
+                        </h3>
+
+                        <p style="white-space: pre-line; line-height:1.9;">
+                            <%= blog.bcontent %>
+                        </p>
+
+                        <button
+                            class="btn btn-primary mt-3"
+                            onclick="window.location.href='/blog'">
+                            ← Back to Blogs
+                        </button>
+
+                    </div>
+
+                </article>
+
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<%- include('footer') %>
+

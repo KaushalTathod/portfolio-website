@@ -1,0 +1,77 @@
+<%- include('header')%>
+    <!-- ===== RESUME / SKILLS SECTION ===== -->
+    <section id="resume" class="resume">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Resume</span>
+                <h2 class="section-title">My Skills &amp; Expertise</h2>
+                <p class="section-desc">A snapshot of my technical capabilities and professional experience</p>
+            </div>
+            
+            <div class="resume-grid">
+                <!-- Technical Skills -->
+                <div class="skills-container">
+                    <h3>Technical Skills</h3>
+
+                    <% if (technicalSkills && technicalSkills.length) { %>
+                        <% for (let i = 0; i < technicalSkills.length; i++) { %>
+                            <div class="skill-item">
+                                <div class="skill-header">
+                                    <span class="skill-name"><%= technicalSkills[i].tech_name %></span>
+                                    <span class="skill-percent"><%= technicalSkills[i].tech_per %>%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" data-width="<%= technicalSkills[i].tech_per %>"></div>
+                                </div>
+                            </div>
+                        <% } %>
+                    <% } else { %>
+                        <p style="margin:0; opacity:0.8;">No skills found.</p>
+                    <% } %>
+                </div>
+                
+                <!-- Experience Timeline -->
+                <div class="timeline-container">
+                    <h3>Experience</h3>
+                    
+                    <div class="timeline">
+                        <% if (experience && experience.length) { %>
+                            <% for (let i = 0; i < experience.length; i++) { %>
+                                <div class="timeline-item">
+                                    <div class="timeline-dot"></div>
+                                    <div class="timeline-content">
+                                        <span class="timeline-date"><%= experience[i].exp_duration %></span>
+                                        <h4><%= experience[i].exp_position %></h4>
+                                        <p class="timeline-company"><%= experience[i].exp_company %></p>
+                                        <p><%= experience[i].exp_desc %></p>
+                                    </div>
+                                </div>
+                            <% } %>
+                        <% } else { %>
+                            <p style="margin:0; opacity:0.8;">No experience found.</p>
+                        <% } %>
+                    </div>
+                    
+                    <h3 style="margin-top: 40px;">Education</h3>
+                    <div class="timeline">
+                        <% if (education && education.length) { %>
+                            <% for (let i = 0; i < education.length; i++) { %>
+                                <div class="timeline-item">
+                                    <div class="timeline-dot"></div>
+                                    <div class="timeline-content">
+                                        <span class="timeline-date"><%= education[i].eyear %></span>
+                                        <h4><%= education[i].edegree %></h4>
+                                        <p class="timeline-company"><%= education[i].eunivercity %></p>
+                                    </div>
+                                </div>
+                            <% } %>
+                        <% } else { %>
+                            <p style="margin:0; opacity:0.8;">No education found.</p>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+                 
+<%- include('footer')%>
