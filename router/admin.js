@@ -147,47 +147,71 @@ router.get('/forget',(req,res)=>{
     req.session.error = null;
 })
 
-router.post('/forget',otpLimiter, async (req, res) => {
-    var { email } = req.body;
-    var sql = `select * from login where email=?`;
-    var data = await exe(sql, [email]);
-    
-    if (data.length > 0) {
-        // Generate 6 digit OTP
-        var otp = Math.floor(100000 + Math.random() * 900000).toString();
-        
-        req.session.reset_email = email;
-        req.session.reset_otp = otp;
-        req.session.otp_expires = Date.now() + 5 * 60 * 1000; // 5 minutes
-        
-        // Send email
-        var transporter = nodemailer.createTransport({
-            service: 'gmail',
-            auth: {
-                user: process.env.EMAIL_USER,
-                pass: process.env.EMAIL_PASS
-            }
-        });
-        
-        var mailOptions = {
-            from: process.env.EMAIL_USER,
-            to: email,
-            subject: 'Admin Panel Password Reset OTP',
-            html: `<h3>Your OTP for resetting the password is: <b>${otp}</b></h3><p>This OTP is valid for 5 minutes.</p>`
-        };
-        
-        transporter.sendMail(mailOptions, (error, info) => {
-            if (error) {
-                console.log(error);
-                req.session.error = "Error sending email. Check server config.";
-                res.redirect('/admin/forget');
-            } else {
-                res.redirect('/admin/verify_otp');
-            }
-        });
-    } else {
-        req.session.error = "Email not found in our records.";
-        res.redirect('/admin/forget');
+router.post('/forget', otpLimiter, async (req, res) => {
+    try {
+        var { email } = req.body;
+
+        var sql = `SELECT * FROM login WHERE email=?`;
+        var data = await exe(sql, [email]);
+
+        if (data.length > 0) {
+
+            // Generate 6 digit OTP
+            var otp = Math.floor(100000 + Math.random() * 900000).toString();
+
+            req.session.reset_email = email;
+            req.session.reset_otp = otp;
+            req.session.otp_expires = Date.now() + 5 * 60 * 1000;
+
+
+            // Gmail SMTP Setup
+            var transporter = nodemailer.createTransport({
+                host: "smtp.gmail.com",
+                port: 465,
+                secure: true,
+                auth: {
+                    user: process.env.EMAIL_USER,
+                    pass: process.env.EMAIL_PASS
+                },
+                connectionTimeout: 10000,
+                greetingTimeout: 10000,
+                socketTimeout: 10000
+            });
+
+
+            var mailOptions = {
+                from: process.env.EMAIL_USER,
+                to: email,
+                subject: "Admin Panel Password Reset OTP",
+                html: `
+                    <h3>Your OTP for resetting the password is:</h3>
+                    <h2>${otp}</h2>
+                    <p>This OTP is valid for 5 minutes.</p>
+                `
+            };
+
+
+            await transporter.sendMail(mailOptions);
+
+            console.log("OTP email sent successfully");
+
+            return res.redirect('/admin/verify_otp');
+
+
+        } else {
+
+            req.session.error = "Email not found in our records.";
+            return res.redirect('/admin/forget');
+
+        }
+
+    } catch (error) {
+
+        console.log("OTP MAIL ERROR:", error);
+
+        req.session.error = "Error sending email. Check server config.";
+        return res.redirect('/admin/forget');
+
     }
 });
 
