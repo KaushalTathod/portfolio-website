@@ -149,10 +149,16 @@ router.get('/forget',(req,res)=>{
 
 router.post('/forget', otpLimiter, async (req, res) => {
     try {
+
         var { email } = req.body;
+
+        console.log("Forget Password Email:", email);
 
         var sql = `SELECT * FROM login WHERE email=?`;
         var data = await exe(sql, [email]);
+
+        console.log("User Found:", data.length);
+
 
         if (data.length > 0) {
 
@@ -166,55 +172,74 @@ router.post('/forget', otpLimiter, async (req, res) => {
 
             // Gmail SMTP Setup
             var transporter = nodemailer.createTransport({
+
                 host: "smtp.gmail.com",
                 port: 587,
                 secure: false,
                 family: 4,
+
                 auth: {
                     user: process.env.EMAIL_USER,
                     pass: process.env.EMAIL_PASS
                 },
+
                 connectionTimeout: 10000,
                 greetingTimeout: 10000,
                 socketTimeout: 10000
+
             });
 
 
             var mailOptions = {
+
                 from: process.env.EMAIL_USER,
                 to: email,
                 subject: "Admin Panel Password Reset OTP",
+
                 html: `
                     <h3>Your OTP for resetting the password is:</h3>
-                    <h2>${otp}</h2>
+                    <h1>${otp}</h1>
                     <p>This OTP is valid for 5 minutes.</p>
                 `
+
             };
+
 
             console.log("Before sending OTP mail");
 
+
             await transporter.sendMail(mailOptions);
 
-            console.log("After sending OTP mail");
 
+            console.log("After sending OTP mail");
             console.log("OTP email sent successfully");
+
 
             return res.redirect('/admin/verify_otp');
 
 
         } else {
 
+            console.log("Email not found");
+
             req.session.error = "Email not found in our records.";
+
             return res.redirect('/admin/forget');
 
         }
 
+
     } catch (error) {
 
-        console.log("OTP MAIL ERROR:", error);
+
+        console.log("OTP MAIL ERROR:", error.message);
+        console.log(error);
+
 
         req.session.error = "Error sending email. Check server config.";
+
         return res.redirect('/admin/forget');
+
 
     }
 });
