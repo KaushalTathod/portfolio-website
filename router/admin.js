@@ -190,8 +190,11 @@ router.post('/forget', otpLimiter, async (req, res) => {
                 `
             };
 
+            console.log("Before sending OTP mail");
 
             await transporter.sendMail(mailOptions);
+
+            console.log("After sending OTP mail");
 
             console.log("OTP email sent successfully");
 
