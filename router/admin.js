@@ -152,52 +152,68 @@ router.post('/forget', otpLimiter, async (req, res) => {
 
         var { email } = req.body;
 
-        console.log("Forget Password Email:", email);
+        console.log("Forget Email:", email);
 
         var sql = `SELECT * FROM login WHERE email=?`;
         var data = await exe(sql, [email]);
 
-        console.log("User Found:", data.length);
-
 
         if (data.length > 0) {
 
-            // Generate 6 digit OTP
+            // Generate OTP
             var otp = Math.floor(100000 + Math.random() * 900000).toString();
+
 
             req.session.reset_email = email;
             req.session.reset_otp = otp;
             req.session.otp_expires = Date.now() + 5 * 60 * 1000;
 
 
-            // Gmail SMTP Setup
+
+            // Gmail SMTP
             var transporter = nodemailer.createTransport({
 
                 host: "smtp.gmail.com",
                 port: 587,
                 secure: false,
-                family: 4,
 
                 auth: {
                     user: process.env.EMAIL_USER,
                     pass: process.env.EMAIL_PASS
                 },
 
-                connectionTimeout: 10000,
-                greetingTimeout: 10000,
-                socketTimeout: 10000
+                tls: {
+                    rejectUnauthorized: false
+                }
 
             });
+
+
+
+            // SMTP Test
+            transporter.verify((error, success) => {
+
+                if (error) {
+                    console.log("SMTP VERIFY ERROR:", error);
+                } else {
+                    console.log("SMTP SERVER READY");
+                }
+
+            });
+
 
 
             var mailOptions = {
 
                 from: process.env.EMAIL_USER,
+
                 to: email,
+
                 subject: "Admin Panel Password Reset OTP",
 
                 html: `
-                    <h3>Your OTP for resetting the password is:</h3>
+                    <h2>Password Reset OTP</h2>
+                    <h3>Your OTP is:</h3>
                     <h1>${otp}</h1>
                     <p>This OTP is valid for 5 minutes.</p>
                 `
@@ -218,7 +234,9 @@ router.post('/forget', otpLimiter, async (req, res) => {
             return res.redirect('/admin/verify_otp');
 
 
+
         } else {
+
 
             console.log("Email not found");
 
@@ -226,14 +244,15 @@ router.post('/forget', otpLimiter, async (req, res) => {
 
             return res.redirect('/admin/forget');
 
+
         }
+
 
 
     } catch (error) {
 
 
-        console.log("OTP MAIL ERROR:", error.message);
-        console.log(error);
+        console.log("OTP MAIL ERROR:", error);
 
 
         req.session.error = "Error sending email. Check server config.";
@@ -242,6 +261,7 @@ router.post('/forget', otpLimiter, async (req, res) => {
 
 
     }
+
 });
 
 router.get('/verify_otp',otpLimiter, (req, res) => {
