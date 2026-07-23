@@ -1,0 +1,74 @@
+<%- include('header') %>
+
+<div class="page-content">
+    <div class="container-fluid">
+
+        <div class="page-header d-flex justify-content-between align-items-center mb-4">
+            <div>
+                <h2 class="fw-bold">Contact Messages</h2>
+                <p class="text-muted mb-0">Messages from website contact form</p>
+            </div>
+        </div>
+
+        <div class="card shadow-sm border-0">
+            <div class="card-body p-0">
+                <table class="table table-hover align-middle mb-0">
+                    <thead class="table-light">
+                        <tr>
+                            <th width="60">#</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Subject</th>
+                            <th>Message</th>
+                            <th>Date</th>
+                            <th>Status</th>
+                            <th width="150">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% if (messages && messages.length) { %>
+                            <% for (let i = 0; i < messages.length; i++) {
+                                const m = messages[i];
+                                const unread = !m.is_read;
+                            %>
+                            <tr class="<%= unread ? 'table-warning' : '' %>">
+                                <td><%= i + 1 %></td>
+                                <td><strong><%= m.name %></strong></td>
+                                <td><a href="mailto:<%= m.email %>"><%= m.email %></a></td>
+                                <td><%= m.subject || '-' %></td>
+                                <td style="max-width:280px; white-space:normal;"><%= m.message %></td>
+                                <td><%= m.created_at ? new Date(m.created_at).toLocaleString() : '-' %></td>
+                                <td>
+                                    <% if (unread) { %>
+                                        <span class="badge bg-danger">Unread</span>
+                                    <% } else { %>
+                                        <span class="badge bg-success">Read</span>
+                                    <% } %>
+                                </td>
+                                <td>
+                                    <% if (unread) { %>
+                                    <a href="/admin/read_message/<%= m.mid %>" class="btn btn-success btn-sm" title="Mark as read">
+                                        <i class="fas fa-check"></i>
+                                    </a>
+                                    <% } %>
+                                    <a href="/admin/delete_message/<%= m.mid %>" class="btn btn-danger btn-sm"
+                                       onclick="return confirm('Delete this message?')" title="Delete">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            <% } %>
+                        <% } else { %>
+                            <tr>
+                                <td colspan="8" class="text-center py-4 text-muted">No contact messages yet.</td>
+                            </tr>
+                        <% } %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<%- include('footer') %>

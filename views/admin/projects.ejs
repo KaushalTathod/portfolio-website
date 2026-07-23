@@ -1,0 +1,50 @@
+<%- include('header') %>
+
+<div class="page-content">
+    <div class="container-fluid">
+
+        <!-- Page Header -->
+        <div class="page-header d-flex justify-content-between align-items-center">
+            <div>
+                <h1 class="h3 mb-1">Add Project</h1>
+                <p class="text-muted small mb-0">Add New Project</p>
+            </div>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+
+                        <form action="/admin/projects_add_save" method="post" enctype="multipart/form-data">
+
+                            <div class="mb-3">
+                                <label class="form-label">Project Name</label>
+                                <input type="text" name="pname" class="form-control" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Project Type</label>
+                                <input type="text" name="ptype" class="form-control" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Project Image</label>
+                                <input type="file" name="pimg" class="form-control" required>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save me-2"></i>Save Project
+                            </button>
+
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<%- include('footer') %>

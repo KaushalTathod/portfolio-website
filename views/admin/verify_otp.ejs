@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Verify OTP - Portfolio Admin</title>
+    
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body class="login-page">
+    <div class="login-wrapper">
+        <div class="login-container">
+            <div class="login-brand text-center mb-4">
+                <i class="fas fa-shield-alt fa-3x text-primary"></i>
+                <h2 class="mt-2 fw-bold">Verify <span class="text-primary">OTP</span></h2>
+                <p class="text-muted">Enter the 6-digit OTP sent to your email</p>
+            </div>
+            
+            <div class="login-card card shadow-lg border-0">
+                <div class="card-body p-5">
+                    <% if(typeof error !== 'undefined' && error) { %>
+                        <div class="alert alert-danger"><%= error %></div>
+                    <% } %>
+                    <div class="alert alert-success">
+                        <i class="fas fa-check-circle me-2"></i>
+                        OTP has been sent to your email. Valid for 5 minutes.
+                    </div>
+                    
+                    <form action="/admin/verify_otp" method="POST">
+                        <div class="mb-4">
+                            <label for="otp" class="form-label fw-semibold">
+                                <i class="fas fa-key me-2 text-primary"></i>Enter OTP
+                            </label>
+                            <input type="text" class="form-control form-control-lg" name="otp" id="otp" 
+                                   placeholder="123456" required />
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary btn-lg w-100">
+                            <i class="fas fa-check me-2"></i>Verify OTP
+                        </button>
+                    </form>
+                    
+                    <div class="text-center mt-4">
+                        <a href="/admin/forget" class="text-decoration-none">
+                            <i class="fas fa-arrow-left me-1"></i> Back
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

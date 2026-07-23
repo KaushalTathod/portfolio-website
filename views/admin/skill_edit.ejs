@@ -1,0 +1,29 @@
+<%- include('header') %>
+
+<div class="page-content">
+    <div class="container-fluid">
+
+        <!-- Page Header -->
+        <div class="page-header d-flex justify-content-between align-items-center">
+            <div>
+                <h1 class="h3 mb-1">Edit Skill</h1>
+                <p class="text-muted small mb-0">Modify your skill details</p>
+            </div>
+        </div>
+        <div class="crow g-4">
+            <div class="col-12">
+                <form action="/admin/update_skill" method="post">
+                    <input type="hidden" name="tid" value="<%= skill.tid %>">
+                    <label>Technical Skills</label>
+                    <input type="text" name="tech_name" value="<%= skill.tech_name %>" class="form-control mb-4">
+                    <label>Percentage</label>
+                    <input type="text" name="tech_per" value="<%= skill.tech_per %>" class="form-control mb-4">
+                    <button class="btn btn-primary ">Update</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<%- include('footer') %>

@@ -1,23 +1,22 @@
     <%- include('header')%>
     <!-- ===== LATEST BLOG SECTION ===== -->
-    <section class="blog">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag">Blog</span>
-                <h2 class="section-title">Latest Insights</h2>
-                <p class="section-desc">Thoughts, tips, and lessons from my journey</p>
-            </div>
-            
-            <div class="blog-grid">
+<section class="blog">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-tag">Blog</span>
+            <h2 class="section-title">Latest Insights</h2>
+            <p class="section-desc">Thoughts, tips, and lessons from my journey</p>
+        </div>
+
+        <div class="blog-scroll-wrapper">
+            <div class="blog-grid" id="blogGrid">
                 <% if (blog && blog.length) { %>
                     <% for (let i = 0; i < blog.length; i++) { %>
-                       <article class="blog-card"onclick="window.location.href='/blog/<%= blog[i].bid %>'"style="cursor:pointer;">
+                       <article class="blog-card" onclick="window.location.href='/blog/<%= blog[i].bid %>'" style="cursor:pointer;">
                         <img src="/<%= blog[i].bimg %>" alt="<%= blog[i].btitle %>" />
-
                         <div class="blog-content">
                             <span class="blog-date"><%= blog[i].bdate %></span>
                             <h3><%= blog[i].btitle %></h3>
-                            <!-- <p><%= blog[i].bcontent %></p> -->
                         </div>
                     </article>
                     <% } %>
@@ -26,5 +25,13 @@
                 <% } %>
             </div>
         </div>
-    </section>
+
+        <br>
+        <div class="stats-text-block">
+            <a href="/portfolio" class="link-with-arrow group">
+                View Projects <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+    </div>
+</section>
     <%- include('footer')%>

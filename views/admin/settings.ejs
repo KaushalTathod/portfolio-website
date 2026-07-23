@@ -1,0 +1,123 @@
+<%- include('header')%>
+
+            <!-- Page Content -->
+            <div class="page-content">
+                <div class="container-fluid">
+                    <div class="page-header">
+                        <h1 class="h3 mb-1">Settings</h1>
+                        <p class="text-muted small mb-0">Manage your website settings</p>
+                    </div>
+
+                    <!-- Settings Tabs -->
+                    <ul class="nav nav-tabs settings-tabs" id="settingsTabs" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#general">
+                                <i class="fas fa-cog me-2"></i>General
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#social">
+                                <i class="fas fa-share-alt me-2"></i>Social Media
+                            </button>
+                        </li>
+                        
+                    </ul>
+
+                    <div class="tab-content mt-4">
+                        <!-- General Settings -->
+                        <div class="tab-pane1 fade show active" id="general">
+                            <div class="card">
+                                <div class="card-body">
+                                    <form action="/admin/contact_save" method="post" enctype="multipart/form-data">
+                                        <div class="row">
+                                            <div class="col-md-6 mb-3">
+                                                <label class="form-label fw-semibold">Email</label>
+                                                <input type="email" class="form-control" name="email" value="<%= contact[0].email %>" />
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label class="form-label fw-semibold">Phone</label>
+                                                <input type="tel" class="form-control" name="phone" value="<%= contact[0].phone %>"/>
+                                            </div>
+                                            <div class="col-12 mb-3">
+                                                <label class="form-label fw-semibold">Address</label>
+                                                <textarea class="form-control" name="address" rows="2"><%= contact[0].address %></textarea>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label class="form-label fw-semibold">Logo</label>
+                                                <input type="file" name="logo" class="form-control" />
+                                                <input type="hidden" name="old_logo"  value="<%= contact[0].logo %>" class="form-control" />
+                                                <h3>Current Photo</h3>
+                                                <img src="/<%= contact[0].logo %>" width="150">
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label class="form-label fw-semibold">Map</label>
+                                                <input type="url" name="map" class="form-control" value="<%= contact[0].map%>"/>
+                                            </div>
+                                            <div class="col-12">
+                                                <button type="submit" class="btn btn-primary">
+                                                    <i class="fas fa-save me-2"></i>Save Settings
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Social Media Settings -->
+                        <div class="tab-pane1 fade" id="social">
+                            <div class="card">
+                                <div class="card-body">
+                                    <form action="/admin/social_save" method="post">
+                                        <div class="row">
+                                            <div class="col-md-6 mb-3">
+                                                <label class="form-label fw-semibold">
+                                                    <i class="fab fa-facebook text-primary me-2"></i>Facebook
+                                                </label>
+                                                <input type="url" class="form-control" name="facebook" value="<%= social_media[0].facebook %>" />
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label class="form-label fw-semibold">
+                                                    <i class="fab fa-twitter text-info me-2"></i>Twitter
+                                                </label>
+                                                <input type="url" class="form-control"   name="twitter" value="<%= social_media[0].twitter %>" />
+                                            </div> 
+                                            <div class="col-md-6 mb-3">
+                                                <label class="form-label fw-semibold">
+                                                    <i class="fab fa-instagram text-danger me-2"></i>Instagram
+                                                </label>
+                                                <input type="url" class="form-control" name="instagram" value="<%= social_media[0].instagram %>" />
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label class="form-label fw-semibold">
+                                                    <i class="fab fa-linkedin text-primary me-2"></i>LinkedIn
+                                                </label>
+                                                <input type="url" class="form-control" name="linkedin" value="<%= social_media[0].linkedin %>" />
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label class="form-label fw-semibold">
+                                                    <i class="fab fa-github text-dark me-2"></i>GitHub
+                                                </label>
+                                                <input type="url" class="form-control" name="github" value="<%= social_media[0].github %>" />
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label class="form-label fw-semibold">
+                                                    <i class="fab fa-youtube text-danger me-2"></i>YouTube
+                                                </label>
+                                                <input type="url" class="form-control" name="youtube" value="<%= social_media[0].youtube %>" />
+                                            </div>
+                                            <div class="col-12">
+                                                <button type="submit" class="btn btn-primary">
+                                                    <i class="fas fa-save me-2"></i>Save Settings
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+<%- include('footer')%>

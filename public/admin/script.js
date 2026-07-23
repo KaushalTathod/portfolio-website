@@ -163,44 +163,9 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // ============================================
-    // 5. FORGOT PASSWORD FORM
+    // 5. FORGOT PASSWORD FORM (Removed JS Simulation)
     // ============================================
-    const forgotForm = document.getElementById('forgotForm');
-    const forgotAlert = document.getElementById('alertMessage');
-    
-    if (forgotForm) {
-        forgotForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const email = document.getElementById('email');
-            if (!email.value.trim() || !isValidEmail(email.value)) {
-                email.classList.add('is-invalid');
-                return;
-            }
-            
-            email.classList.remove('is-invalid');
-            
-            // Simulate sending
-            const btn = this.querySelector('.btn');
-            const originalText = btn.innerHTML;
-            btn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Sending...';
-            btn.disabled = true;
-            
-            setTimeout(function() {
-                btn.innerHTML = '<i class="fas fa-check me-2"></i>Sent!';
-                btn.className = 'btn btn-success btn-lg w-100';
-                
-                if (forgotAlert) {
-                    forgotAlert.className = 'alert alert-success';
-                    forgotAlert.innerHTML = '<i class="fas fa-check-circle me-2"></i>Reset link sent to your email!';
-                }
-                
-                setTimeout(function() {
-                    window.location.href = 'index.html';
-                }, 2000);
-            }, 1500);
-        });
-    }
+    // The form now uses standard POST submission to backend route /admin/forget
     
     // ============================================
     // 6. FORM VALIDATION HELPERS
@@ -430,5 +395,37 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
+    // ============================================
+    // 14. SEARCH BAR FUNCTIONALITY
+    // ============================================
+    const searchInput = document.querySelector('.search-box input');
+    if (searchInput) {
+        searchInput.addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase().trim();
+            
+            // Search in Tables
+            const tableRows = document.querySelectorAll('table tbody tr');
+            tableRows.forEach(row => {
+                const text = row.textContent.toLowerCase();
+                if (text.includes(searchTerm)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+
+            // Search in specific lists and cards
+            const searchableItems = document.querySelectorAll('.activity-item, .message-item, .stat-card');
+            searchableItems.forEach(item => {
+                const text = item.textContent.toLowerCase();
+                if (text.includes(searchTerm)) {
+                    item.style.display = '';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        });
+    }
+
     console.log('✅ Portfolio Admin Loaded Successfully');
 });

@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard - Portfolio Admin</title>
+    
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/admin/style.css" />
+    <style>
+/* Sub Menu */
+.collapse {
+    transition: all 0.3s ease;
+}
+
+.collapse li {
+    list-style: none;
+}
+
+.collapse li a {
+    display: block;
+    padding: 10px 15px 10px 50px;
+    color: #ddd;
+    text-decoration: none;
+    font-size: 15px;
+    transition: 0.3s;
+}
+
+.collapse li a:hover {
+    background: #34495e;
+    color: #fff;
+    border-radius: 5px;
+}
+
+/* Arrow Rotation */
+.nav-item a[aria-expanded="true"] .fa-chevron-down {
+    transform: rotate(180deg);
+}
+
+.fa-chevron-down {
+    transition: transform 0.3s ease;
+}
+</style>
+</head>
+<body>
+    <div class="app-wrapper">
+        <!-- ===== SIDEBAR ===== -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-brand">
+                <i class="fas fa-code"></i>
+                <span>Portfolio<span>Admin</span></span>
+            </div>
+            
+            <button class="sidebar-toggle" id="sidebarToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="nav-item active">
+                        <a href="/admin/">
+                            <i class="fas fa-th-large"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    
+                    <li class="nav-divider">Content</li>
+                    
+                    <li class="nav-item">
+                        <a href="#hero" data-bs-toggle="collapse" aria-expanded="false">
+                            <i class="fas fa-landmark"></i>
+                            <span>Hero Section</span>
+                            <i class="fas fa-chevron-down ms-auto"></i>
+                        </a>
+                        <ul class="collapse" id="hero">
+                            <li><a href="/admin/hero">Edit Hero</a></li>
+                        </ul>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a href="#about" data-bs-toggle="collapse" aria-expanded="false">
+                            <i class="fas fa-user"></i>
+                            <span>About</span>
+                            <i class="fas fa-chevron-down ms-auto"></i>
+                        </a>
+                        <ul class="collapse" id="about">
+                            <li><a href="/admin/about">Edit About</a></li>
+                        </ul>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a href="#skills" data-bs-toggle="collapse" aria-expanded="false">
+                            <i class="fas fa-cogs"></i>
+                            <span>Skills</span>
+                            <i class="fas fa-chevron-down ms-auto"></i>
+                        </a>
+                        <ul class="collapse" id="skills">
+                            <li><a href="/admin/skill_add">Add Skill</a></li>
+                            <li><a href="/admin/skill_list">Manage Skills</a></li>
+                        </ul>
+                    </li>
+                    
+                    <!-- Education -->
+                    <li class="nav-item">
+                        <a href="#education" data-bs-toggle="collapse" aria-expanded="false">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                            <span>Education</span>
+                            <i class="fas fa-chevron-down ms-auto"></i>
+                        </a>
+
+                        <ul class="collapse" id="education">
+                            <li><a href="/admin/education_add">Add Education</a></li>
+                            <li><a href="/admin/education_list">Manage Education</a></li>
+                        </ul>
+                    </li>
+
+                    <!-- Experience -->
+                    <li class="nav-item">
+                        <a href="#experience" data-bs-toggle="collapse" aria-expanded="false">
+                            <i class="fa-solid fa-user-tie"></i>
+                            <span>Experience</span>
+                            <i class="fas fa-chevron-down ms-auto"></i>
+                        </a>
+
+                        <ul class="collapse" id="experience">
+                            <li><a href="/admin/experience_add">Add Experience</a></li>
+                            <li><a href="/admin/experience_list">Manage Experience</a></li>
+                        </ul>
+                    </li>
+                    
+                    
+                    <li class="nav-item">
+                        <a href="#services" data-bs-toggle="collapse" aria-expanded="false">
+                            <i class="fas fa-concierge-bell"></i>
+                            <span>Services</span>
+                            <i class="fas fa-chevron-down ms-auto"></i>
+                        </a>
+                        <ul class="collapse" id="services">
+                            <li><a href="/admin/services_add">Add Service</a></li>
+                            <li><a href="/admin/services_list">Manage Services</a></li>
+                        </ul>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a href="#portfolio" data-bs-toggle="collapse" aria-expanded="false">
+                            <i class="fas fa-folder-open"></i>
+                            <span>Project</span>
+                            <i class="fas fa-chevron-down ms-auto"></i>
+                        </a>
+                        <ul class="collapse" id="portfolio">
+                            <li><a href="/admin/projects">Add Project</a></li>
+                            <li><a href="/admin/projects_list">Manage Projects</a></li>
+                            
+                        </ul>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a href="#blog" data-bs-toggle="collapse" aria-expanded="false">
+                            <i class="fas fa-blog"></i>
+                            <span>Blog</span>
+                            <i class="fas fa-chevron-down ms-auto"></i>
+                        </a>
+                        <ul class="collapse" id="blog">
+                            <li><a href="/admin/blog">Add Post</a></li>
+                            <li><a href="/admin/blog_list">Manage Posts</a></li>
+                            
+                        </ul>
+                    </li>
+                    
+                    
+                    <li class="nav-divider">Management</li>
+                    
+                    <li class="nav-item">
+                        <a href="#messages" data-bs-toggle="collapse" aria-expanded="false">
+                            <i class="fas fa-envelope"></i>
+                            <span>Messages</span>
+                            <i class="fas fa-chevron-down ms-auto"></i>
+                        </a>
+                        <ul class="collapse" id="messages">
+                            <li><a href="/admin/messages">Inbox</a></li>
+                            <li><a href="/admin/messages_unread">Unread</a></li>
+                        </ul>
+                    </li>
+
+                                        
+                    <li class="nav-divider">System</li>
+                    
+                    <li class="nav-item">
+                        <a href="/admin/settings">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a href="/admin/logout">
+                            <i class="fas fa-sign-out-alt text-danger"></i>
+                            <span class="text-danger">Logout</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+        <!-- ===== MAIN CONTENT ===== -->
+        <div class="main-content">
+            <!-- ===== NAVBAR ===== -->
+            <header class="navbar-top">
+                <div class="d-flex align-items-center gap-3">
+                    <button class="btn btn-light" id="sidebarToggleBtn">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Search..." class="form-control form-control-sm" />
+                    </div>
+                </div>
+                
+                <div class="d-flex align-items-center gap-3">
+                    <!-- Theme Toggle -->
+                    <button class="btn btn-light" id="themeToggle">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <!-- User Profile -->
+                    <div class="dropdown">
+                        <button class="btn btn-light p-0" data-bs-toggle="dropdown">
+                            <img src="https://ui-avatars.com/api/?name=Admin+User&size=40&background=6c63ff&color=fff" 
+                                 alt="Profile" class="rounded-circle" width="40" height="40" />
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="#">
+                                <i class="fas fa-user me-2"></i>Profile
+                            </a></li>
+                            <li><a class="dropdown-item" href="#">
+                                <i class="fas fa-cog me-2"></i>Settings
+                            </a></li>
+                            <li><hr class="dropdown-divider" /></li>
+                            <li><a class="dropdown-item text-danger" href="/admin/logout">
+                                <i class="fas fa-sign-out-alt me-2"></i>Logout
+                            </a></li>
+                        </ul>
+                    </div>
+                </div>
+            </header>

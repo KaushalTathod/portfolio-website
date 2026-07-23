@@ -1,3 +1,4 @@
+
 <%- include('header')%>
     <!--HERO SECTION-->
     <section id="hero" class="hero">
@@ -6,22 +7,53 @@
             <div class="hero-text">
                 <span class="hero-greeting">Hello, I'm</span>
                 <h1><%= (hero && hero.hname) ? hero.hname : 'Your Name' %></h1>
-                <h2 id="typingText" data-phrases="<%= (hero && hero.hprofession) ? hero.hprofession : 'Creative Developer' %>"><%= (hero && hero.hprofession) ? hero.hprofession : 'Creative Developer' %></h2>
+                
+                <h2 id="proffesion" data-phrases="<%= (hero && hero.hprofession) ? hero.hprofession : 'Creative Developer' %>"><%= (hero && hero.hprofession) ? hero.hprofession : 'Creative Developer' %></h2>
+                
                 <p><%= (hero && hero.habout) ? hero.habout : '' %></p>
                 <div class="hero-buttons">
                     <a href="/portfolio" class="btn btn-primary">View My Work</a>
                     <a href="/contact" class="btn btn-secondary">Let's Talk</a>
                 </div>
-                <div class="hero-social">
-                    <% if (social_media) { %>
-                        <% if (social_media.github) { %><a href="<%= social_media.github %>" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a><% } %>
-                        <% if (social_media.linkedin) { %><a href="<%= social_media.linkedin %>" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a><% } %>
-                        <% if (social_media.twitter) { %><a href="<%= social_media.twitter %>" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a><% } %>
-                        <% if (social_media.instagram) { %><a href="<%= social_media.instagram %>" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a><% } %>
-                        <% if (social_media.youtube) { %><a href="<%= social_media.youtube %>" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a><% } %>
-                        <% if (social_media.facebook) { %><a href="<%= social_media.facebook %>" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a><% } %>
-                    <% } %>
-                </div>
+                     <div class="hero-social">
+
+                        <% if (social_media.facebook && social_media.facebook.trim() !== "") { %>
+                            <a href="<%= social_media.facebook %>" target="_blank">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                        <% } %>
+
+                        <% if (social_media.instagram && social_media.instagram.trim() !== "") { %>
+                            <a href="<%= social_media.instagram %>" target="_blank">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                        <% } %>
+
+                        <% if (social_media.github && social_media.github.trim() !== "") { %>
+                            <a href="<%= social_media.github %>" target="_blank">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        <% } %>
+
+                        <% if (social_media.linkedin && social_media.linkedin.trim() !== "") { %>
+                            <a href="<%= social_media.linkedin %>" target="_blank">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                        <% } %>
+
+                        <% if (social_media.twitter && social_media.twitter.trim() !== "") { %>
+                            <a href="<%= social_media.twitter %>" target="_blank">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                        <% } %>
+
+                        <% if (social_media.youtube && social_media.youtube.trim() !== "") { %>
+                            <a href="<%= social_media.youtube %>" target="_blank">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                        <% } %>
+
+                    </div>
             </div>
             <div class="hero-image">
                 <% if (hero && hero.himg) { %>
@@ -32,4 +64,142 @@
             </div>
         </div>
     </section>
+
+
+    <!-- ===== STATISTICS COUNTER ===== -->
+    <section class="statistics">
+        <div class="container">
+            <div class="stat-grid">
+                <div class="stat-item">
+                    <span class="stat-number" data-count="<%= (about && about.aprojectcom) ? about.aprojectcom : 0 %>">+</span>
+                    <span class="stat-label">Projects Completed</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-count="<%= (about && about.ahappyclients) ? about.ahappyclients : 0 %>">+</span>
+                    <span class="stat-label">Happy Clients</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-count="<%= (about && about.aaward) ? about.aaward : 0 %>">+</span>
+                    <span class="stat-label">Awards Won</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-count="<%= (about && about.ayear) ? about.ayear : 0 %>">+</span>
+                    <span class="stat-label">Years Experience</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="stats-text-block">
+     <a href="/portfolio" class="link-with-arrow group">
+       View all projects <i class="fas fa-arrow-right"></i>
+     </a>
+    </div>
+<!-- ===== EXPERIENCE SECTION ===== -->
+<section id="experience" class="experience">
+    <div class="container">
+
+        <div class="section-header">
+            <span class="section-tag">Experience</span>
+            <h2 class="section-title">My Journey</h2>
+            <p class="section-desc">
+                Professional experience and career milestones
+            </p>
+        </div>
+
+        <% if (experience && experience.length) { %>
+
+            <div class="timeline">
+
+                <% for (let i = 0; i < experience.length; i++) { %>
+
+                    <div class="timeline-item">
+
+                        <div class="timeline-dot"></div>
+
+                        <div class="timeline-content">
+
+                            <span class="timeline-date">
+                                <%= experience[i].exp_duration %>
+                            </span>
+
+                            <h3>
+                                <%= experience[i].exp_position %>
+                            </h3>
+
+                            <h4 class="timeline-company">
+                                <%= experience[i].exp_company %>
+                            </h4>
+
+                            <p>
+                                <%= experience[i].exp_desc %>
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                <% } %>
+
+            </div>
+
+        <% } else { %>
+
+            <div class="timeline">
+                <div class="timeline-item">
+
+                    <div class="timeline-dot"></div>
+
+                    <div class="timeline-content">
+                        <p style="margin:0; opacity:0.8;">
+                            No experience found.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+
+        <% } %>
+
+    </div>
+</section>
+
+                    
+<!-- ===== SERVICES SECTION ===== -->
+<section id="services" class="services">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-tag">Services</span>
+            <h2 class="section-title">What I Offer</h2>
+            <p class="section-desc">Expert solutions tailored to bring your vision to life</p>
+        </div>
+
+        <% if (services && services.length) { %>
+            <div class="services-grid">
+                <% for (let i = 0; i < services.length; i++) { %>
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas <%= services[i].ser_icon %>"></i>
+                        </div>
+                        <h3><%= services[i].ser_technology || services[i].service_name || services[i].tech_name || 'Service' %></h3>
+                        <p><%= services[i].ser_discription || services[i].description || services[i].ser_description || '' %></p>
+                    </div>
+                <% } %>
+            </div>
+        <% } else { %>
+            <div class="services-grid">
+                <div class="service-card">
+                    <p style="opacity:0.8; margin:0;">No services found.</p>
+                </div>
+            </div>
+        <% } %>
+
+    </div>
+    <br>
+    <div class="stats-text-block">
+     <a href="/about" class="link-with-arrow group">
+       View About <i class="fas fa-arrow-right"></i>
+     </a>
+    </div>
+</section>
+
 <%- include('footer')%>

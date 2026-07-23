@@ -1,0 +1,70 @@
+<%- include('header') %>
+
+<div class="page-content">
+    <div class="container-fluid">
+
+        <!-- Page Header -->
+        <div class="page-header d-flex justify-content-between align-items-center">
+            <div>
+                <h1 class="h3 mb-1">About</h1>
+                <p class="text-muted small mb-0">Manage About Information</p>
+            </div>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-12">
+                <form action="/admin/about_add_save" method="post" enctype="multipart/form-data">
+
+                    <label>Profession</label>
+                    <input type="text" name="aprofession" value="<%= about[0].aprofession %>" class="form-control mb-3">
+
+                    <label>Summary</label>
+                    <textarea name="asummary" class="form-control mb-3" rows="4"><%= about[0].asummary %></textarea>
+
+                    <label>Name</label>
+                    <input type="text" name="aname" value="<%= about[0].aname %>" class="form-control mb-3">
+
+                    <label>Email</label>
+                    <input type="email" name="aemail" value="<%= about[0].aemail %>" class="form-control mb-3">
+
+                    <label>Location</label>
+                    <input type="text" name="alocation" value="<%= about[0].alocation %>" class="form-control mb-3">
+
+                    <label>Freelance</label>
+                    <input type="text" name="afreelance" value="<%= about[0].afreelance %>" class="form-control mb-3">
+
+                    <label>Experience</label>
+                    <input type="number" name="aexperience" value="<%= about[0].aexperience %>" class="form-control mb-3">
+
+                    <label>Completed Projects</label>
+                    <input type="number" name="aprojectcom" value="<%= about[0].aprojectcom %>" class="form-control mb-3">
+
+                    <label>Happy Clients</label>
+                    <input type="number" name="ahappyclients" value="<%= about[0].ahappyclients %>" class="form-control mb-3">
+
+                    <label>Awards</label>
+                    <input type="number" name="aaward" value="<%= about[0].aaward %>" class="form-control mb-3">
+
+                    <label>Years of Experience</label>
+                    <input type="number" name="ayear" value="<%= about[0].ayear %>" class="form-control mb-3">
+
+                    <label>Image</label>
+                    <input type="file" name="aimg" class="form-control mb-3">
+
+                    <input type="hidden" name="old_img" value="<%= about[0].aimg %>">
+
+                    <label>Current Image</label><br>
+                    <img src="/<%= about[0].aimg %>" width="150" class="mb-3"><br>
+
+                    <button type="submit" class="btn btn-primary">
+                        Save
+                    </button>
+
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<%- include('footer') %>

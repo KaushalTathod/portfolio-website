@@ -1,0 +1,35 @@
+<%- include('header') %>
+
+<div class="page-content">
+    <div class="container-fluid">
+
+        <!-- Page Header -->
+        <div class="page-header d-flex justify-content-between align-items-center">
+            <div>
+                <h1 class="h3 mb-1">Hero</h1>
+                <p class="text-muted small mb-0">Add Your Hero Information</p>
+            </div>
+        </div>
+        <div class="crow g-4">
+            <div class="col-12">
+                <form action="/admin/hero_add_save" method="post" enctype="multipart/form-data">
+                    <label>Name</label>
+                    <input type="text" name="hname" value="<%=hero[0].hname%>" class="form-control mb-4">
+                    <label>Profession</label>
+                    <input type="text" name="hprofession"value="<%=hero[0].hprofession%>" class="form-control mb-4">
+                    <label>About</label>
+                    <input type="text" name="habout"value="<%=hero[0].habout%>" class="form-control mb-4">
+                    <label>Image</label>
+                    <input type="file" name="himg" class="form-control mb-4">
+                    <input type="hidden" name="old_img" value="<%= hero[0].himg %>"  class="form-control mb-4">
+                    <label>Old Image</label><br>
+                    <img src="/<%= hero[0].himg %>" width="150"><br>
+
+                    <button class="btn btn-primary ">Save</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include('footer') %>

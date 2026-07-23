@@ -1,0 +1,31 @@
+<%- include('header') %>
+
+<div class="page-content">
+    <div class="container-fluid">
+
+        <!-- Page Header -->
+        <div class="page-header d-flex justify-content-between align-items-center">
+            <div>
+                <h1 class="h3 mb-1">Add Education</h1>
+                <p class="text-muted small mb-0">Add your skills here</p>
+            </div>
+        </div>
+        <div class="crow g-4">
+            <div class="col-12">
+                <form action="/admin/education_add_save" method="post">
+                    <label>Education Duration</label>
+                    <input type="text" name="eyear" class="form-control mb-4">
+                    <label>Degree</label>
+                    <input type="text" name="edegree" class="form-control mb-4">
+                    <label>Univercity</label>
+                    <input type="text" name="eunivercity" class="form-control mb-4">
+                    <button class="btn btn-primary ">Save</button>
+                </form>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+<%- include('footer') %>

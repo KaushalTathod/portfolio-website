@@ -7,7 +7,7 @@
                 <h2 class="section-title">Turning Ideas Into Reality</h2>
                 <p class="section-desc">Get to know more about my background and what drives me</p>
             </div>
-            
+
             <div class="about-grid">
                 <div class="about-image">
                     <% if (about && about.aimg) { %>
@@ -16,14 +16,14 @@
                         <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=700&fit=crop&crop=face" alt="About" />
                     <% } %>
                     <div class="about-experience-badge">
-                        <span><%= (about && about.aexperience) ? about.aexperience : '0' %></span>
+                        <span><%= (about && about.aexperience) ? about.aexperience : '0' %>+</span>
                         Years Experience
                     </div>
                 </div>
                 <div class="about-content">
                     <h3><%= (about && about.aprofession) ? about.aprofession : 'Creative Developer' %></h3>
                     <p><%= (about && about.asummary) ? about.asummary : '' %></p>
-                    
+
                     <div class="about-info-grid">
                         <div class="info-item">
                             <span class="info-label">Name:</span>
@@ -42,35 +42,84 @@
                             <span class="info-value"><%= (about && about.afreelance) ? about.afreelance : '-' %></span>
                         </div>
                     </div>
-                    
+
                     <a href="/contact" class="btn btn-primary">Get In Touch</a>
                 </div>
             </div>
         </div>
     </section>
-    
-    <!-- ===== STATISTICS COUNTER ===== -->
-    <section class="statistics">
+
+    <!-- ===== RESUME SECTION (Skills + Education) ===== -->
+    <section id="resume" class="resume">
         <div class="container">
-            <div class="stat-grid">
-                <div class="stat-item">
-                    <span class="stat-number" data-count="<%= (about && about.aprojectcom) ? about.aprojectcom : 0 %>">0</span>
-                    <span class="stat-label">Projects Completed</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number" data-count="<%= (about && about.ahappyclients) ? about.ahappyclients : 0 %>">0</span>
-                    <span class="stat-label">Happy Clients</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number" data-count="<%= (about && about.aaward) ? about.aaward : 0 %>">0</span>
-                    <span class="stat-label">Awards Won</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number" data-count="<%= (about && about.ayear) ? about.ayear : 0 %>">0</span>
-                    <span class="stat-label">Years Experience</span>
-                </div>
+            <div class="section-header">
+                <span class="section-tag">Resume</span>
+                <h2 class="section-title">Skills &amp; Education</h2>
+                <p class="section-desc">A quick look at what I know and where I learned it</p>
             </div>
-        </div>
-    </section>
-    
+
+            <div class="resume-grid">
+
+                <!-- Technical Skills -->
+                <div class="skills-container">
+                    <h3>Technical Skills</h3>
+
+                    <% if (technicalSkills && technicalSkills.length) { %>
+                        <% for (let i = 0; i < technicalSkills.length; i++) { %>
+                            <div class="skill-item">
+                                <div class="skill-header">
+                                    <span class="skill-name"><%= technicalSkills[i].tech_name %></span>
+                                    <span class="skill-percent"><%= technicalSkills[i].tech_per %>%</span>
+                                </div>
+
+                                <div class="progress-bar">
+                                    <div class="progress-fill" data-width="<%= technicalSkills[i].tech_per %>"></div>
+                                </div>
+                            </div>
+                        <% } %>
+                    <% } else { %>
+                        <p style="margin:0; opacity:0.8;">No skills found.</p>
+                    <% } %>
+                </div>
+
+                <!-- Education -->
+                <div class="timeline-container">
+    <h3>Education</h3>
+
+    <div class="timeline edu-timeline">
+        <% if (education && education.length) { %>
+            <% for (let i = 0; i < education.length; i++) { %>
+
+                <div class="timeline-item edu-card">
+                    <div class="edu-card-top">
+                        <div class="timeline-dot" data-index="<%= String(i + 1).padStart(2, '0') %>"></div>
+                        <span class="timeline-date"><%= education[i].eyear %></span>
+                    </div>
+
+                    <div class="timeline-content">
+                        <h4><%= education[i].edegree %></h4>
+                        <p class="timeline-company">
+                            <%= education[i].eunivercity %>
+                        </p>
+                    </div>
+                </div>
+
+            <% } %>
+        <% } else { %>
+            <p style="margin:0; opacity:0.8;">No education found.</p>
+        <% } %>
+    </div>
+</div>
+
+</div>
+<br>
+<div class="stats-text-block">
+     <a href="/blog" class="link-with-arrow group">
+       View Blog <i class="fas fa-arrow-right"></i>
+     </a>
+    </div>
+</div>
+        
+</section>
+
 <%- include('footer')%>

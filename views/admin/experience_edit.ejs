@@ -1,0 +1,33 @@
+<%- include('header') %>
+
+<div class="page-content">
+    <div class="container-fluid">
+
+        <!-- Page Header -->
+        <div class="page-header d-flex justify-content-between align-items-center">
+            <div>
+                <h1 class="h3 mb-1">Edit Experience</h1>
+                <p class="text-muted small mb-0">Modify your experience details</p>
+            </div>
+        </div>
+        <div class="crow g-4">
+            <div class="col-12">
+                <form action="/admin/update_experience" method="post">
+                    <input type="hidden" name="eid" value="<%= experience.eid %>">
+                    <label>Experience Duration</label>
+                    <input type="text" name="exp_duration" value="<%= experience.exp_duration %>" class="form-control mb-4">
+                    <label>Position</label>
+                    <input type="text" name="exp_position" value="<%= experience.exp_position %>" class="form-control mb-4">
+                    <label>Company</label>
+                    <input type="text" name="exp_company" value="<%= experience.exp_company %>" class="form-control mb-4">
+                    <label>Description</label>
+                    <input type="text" name="exp_desc" value="<%= experience.exp_desc %>" class="form-control mb-4">
+                    <button class="btn btn-primary ">Update</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<%- include('footer') %>

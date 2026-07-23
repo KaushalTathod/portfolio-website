@@ -1,31 +1,56 @@
-  <!-- ===== FOOTER ===== -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <div class="logo">
-                <a href="/">
-                    <img src="/<%= contact.logo %>" alt="Logo" width="150" height="50">
-                </a>
-            </div>
-                    <p>Creative developer passionate about building meaningful digital experiences.</p>
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="logo">
+                    <a href="/">
+                        <img src="/<%= contact.logo %>" alt="Logo" width="150" height="50">
+                    </a>
                 </div>
-                <div class="footer-social">
-                    <h4>Connect</h4>
-                    <div class="social-links">
-                        <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                        <a href="#" aria-label="Dribbble"><i class="fab fa-dribbble"></i></a>
-                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-                    </div>
-                </div>
+                <p>Creative developer passionate about building meaningful digital experiences.</p>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 Alex Rivera. All rights reserved. | Built with <i class="fas fa-heart" style="color: #ff6b6b;"></i></p>
+            <div class="footer-social">
+                <h4>Connect</h4>
+                <div class="social-links">
+                    <% if (social_media.facebook && social_media.facebook.trim() !== "") { %>
+                        <a href="<%= social_media.facebook %>" target="_blank">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                    <% } %>
+                    <% if (social_media.instagram && social_media.instagram.trim() !== "") { %>
+                        <a href="<%= social_media.instagram %>" target="_blank">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    <% } %>
+                    <% if (social_media.github && social_media.github.trim() !== "") { %>
+                        <a href="<%= social_media.github %>" target="_blank">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    <% } %>
+                    <% if (social_media.linkedin && social_media.linkedin.trim() !== "") { %>
+                        <a href="<%= social_media.linkedin %>" target="_blank">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    <% } %>
+                    <% if (social_media.twitter && social_media.twitter.trim() !== "") { %>
+                        <a href="<%= social_media.twitter %>" target="_blank">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    <% } %>
+                    <% if (social_media.youtube && social_media.youtube.trim() !== "") { %>
+                        <a href="<%= social_media.youtube %>" target="_blank">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    <% } %>
+                </div>
             </div>
         </div>
-    </footer>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Kaushal Tathod. All rights reserved. | Built with <i class="fas fa-heart" style="color: #ff6b6b;"></i></p>
+        </div>
+    </div>
+</footer>
     
     <!-- ===== LIGHTBOX ===== -->
     <div id="lightbox" class="lightbox">

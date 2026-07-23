@@ -1,0 +1,29 @@
+<%- include('header') %>
+
+<div class="page-content">
+    <div class="container-fluid">
+
+        <!-- Page Header -->
+        <div class="page-header d-flex justify-content-between align-items-center">
+            <div>
+                <h1 class="h3 mb-1">Edit Service</h1>
+                <p class="text-muted small mb-0">Modify your service details</p>
+            </div>
+        </div>
+        <div class="crow g-4">
+            <div class="col-12">
+                <form action="/admin/update_service" method="post">
+                    <input type="hidden" name="sid" value="<%= services.sid %>">
+                    <label>Service Technology</label>
+                    <input type="text" name="ser_technology" value="<%= services.ser_technology %>" class="form-control mb-4">
+                    <label>Description</label>
+                    <input type="text" name="ser_discription" value="<%= services.ser_discription %>" class="form-control mb-4">
+                    <button class="btn btn-primary ">Update</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<%- include('footer') %>
