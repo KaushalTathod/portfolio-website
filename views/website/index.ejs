@@ -1,99 +1,86 @@
 
 <%- include('header')%>
-    <!--HERO SECTION-->
-    <section id="hero" class="hero">
+<!--HERO SECTION-->
+<section id="hero" class="hero">
         <div class="hero-overlay"></div>
         <div class="container hero-content">
+
+            <!-- LEFT PART: Name, Profession, Social icons, About, Buttons -->
             <div class="hero-text">
                 <span class="hero-greeting">Hello, I'm</span>
                 <h1><%= (hero && hero.hname) ? hero.hname : 'Your Name' %></h1>
-                
+
                 <h2 id="proffesion" data-phrases="<%= (hero && hero.hprofession) ? hero.hprofession : 'Creative Developer' %>"><%= (hero && hero.hprofession) ? hero.hprofession : 'Creative Developer' %></h2>
-                
+
                 <p><%= (hero && hero.habout) ? hero.habout : '' %></p>
+
                 <div class="hero-buttons">
                     <a href="/portfolio" class="btn btn-primary">View My Work</a>
                     <a href="/contact" class="btn btn-secondary">Let's Talk</a>
                 </div>
-                     <div class="hero-social">
 
-                        <% if (social_media.facebook && social_media.facebook.trim() !== "") { %>
-                            <a href="<%= social_media.facebook %>" target="_blank">
-                                <i class="fab fa-facebook-f"></i>
-                            </a>
-                        <% } %>
+                <div class="hero-social">
 
-                        <% if (social_media.instagram && social_media.instagram.trim() !== "") { %>
-                            <a href="<%= social_media.instagram %>" target="_blank">
-                                <i class="fab fa-instagram"></i>
-                            </a>
-                        <% } %>
+                    <% if (social_media.facebook && social_media.facebook.trim() !== "") { %>
+                        <a href="<%= social_media.facebook %>" target="_blank">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                    <% } %>
 
-                        <% if (social_media.github && social_media.github.trim() !== "") { %>
-                            <a href="<%= social_media.github %>" target="_blank">
-                                <i class="fab fa-github"></i>
-                            </a>
-                        <% } %>
+                    <% if (social_media.instagram && social_media.instagram.trim() !== "") { %>
+                        <a href="<%= social_media.instagram %>" target="_blank">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    <% } %>
 
-                        <% if (social_media.linkedin && social_media.linkedin.trim() !== "") { %>
-                            <a href="<%= social_media.linkedin %>" target="_blank">
-                                <i class="fab fa-linkedin-in"></i>
-                            </a>
-                        <% } %>
+                    <% if (social_media.github && social_media.github.trim() !== "") { %>
+                        <a href="<%= social_media.github %>" target="_blank">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    <% } %>
 
-                        <% if (social_media.twitter && social_media.twitter.trim() !== "") { %>
-                            <a href="<%= social_media.twitter %>" target="_blank">
-                                <i class="fab fa-twitter"></i>
-                            </a>
-                        <% } %>
+                    <% if (social_media.linkedin && social_media.linkedin.trim() !== "") { %>
+                        <a href="<%= social_media.linkedin %>" target="_blank">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    <% } %>
 
-                        <% if (social_media.youtube && social_media.youtube.trim() !== "") { %>
-                            <a href="<%= social_media.youtube %>" target="_blank">
-                                <i class="fab fa-youtube"></i>
-                            </a>
-                        <% } %>
+                    <% if (social_media.twitter && social_media.twitter.trim() !== "") { %>
+                        <a href="<%= social_media.twitter %>" target="_blank">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    <% } %>
 
-                    </div>
+                    <% if (social_media.youtube && social_media.youtube.trim() !== "") { %>
+                        <a href="<%= social_media.youtube %>" target="_blank">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    <% } %>
+
+                </div>
             </div>
+
+            <!-- RIGHT PART: Image -->
             <div class="hero-image">
-                <% if (hero && hero.himg) { %>
-                    <img src="/<%= hero.himg %>" alt="<%= hero.hname || 'Profile' %>" />
-                <% } else { %>
-                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&h=500&fit=crop&crop=face" alt="Profile" />
-                <% } %>
+
+                <div class="hero-image-frame">
+                    <% if (hero && hero.himg) { %>
+                        <img src="/<%= hero.himg %>" alt="<%= hero.hname || 'Profile' %>" />
+                    <% } else { %>
+                        Kaushal
+                    <% } %>
+                </div>
+
+                <div class="hero-image-caption">
+                    <h3><%= (hero && hero.hname) ? hero.hname : 'Your Name' %></h3>
+                    <span><%= (hero && hero.hprofession) ? hero.hprofession : 'Full Stack & 3D Web Creator' %></span>
+                </div>
             </div>
+
         </div>
     </section>
 
 
-    <!-- ===== STATISTICS COUNTER ===== -->
-    <section class="statistics">
-        <div class="container">
-            <div class="stat-grid">
-                <div class="stat-item">
-                    <span class="stat-number" data-count="<%= (about && about.aprojectcom) ? about.aprojectcom : 0 %>">+</span>
-                    <span class="stat-label">Projects Completed</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number" data-count="<%= (about && about.ahappyclients) ? about.ahappyclients : 0 %>">+</span>
-                    <span class="stat-label">Happy Clients</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number" data-count="<%= (about && about.aaward) ? about.aaward : 0 %>">+</span>
-                    <span class="stat-label">Awards Won</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number" data-count="<%= (about && about.ayear) ? about.ayear : 0 %>">+</span>
-                    <span class="stat-label">Years Experience</span>
-                </div>
-            </div>
-        </div>
-    </section>
-    <div class="stats-text-block">
-     <a href="/portfolio" class="link-with-arrow group">
-       View all projects <i class="fas fa-arrow-right"></i>
-     </a>
-    </div>
 <!-- ===== EXPERIENCE SECTION ===== -->
 <section id="experience" class="experience">
     <div class="container">
@@ -161,8 +148,37 @@
         <% } %>
 
     </div>
+    <br>
 </section>
 
+    <!-- ===== STATISTICS COUNTER ===== -->
+    <section class="statistics">
+        <div class="container">
+            <div class="stat-grid">
+                <div class="stat-item">
+                    <span class="stat-number" data-count="<%= (about && about.aprojectcom) ? about.aprojectcom : 0 %>">+</span>
+                    <span class="stat-label">Projects Completed</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-count="<%= (about && about.ahappyclients) ? about.ahappyclients : 0 %>">+</span>
+                    <span class="stat-label">Happy Clients</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-count="<%= (about && about.aaward) ? about.aaward : 0 %>">+</span>
+                    <span class="stat-label">Awards Won</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-count="<%= (about && about.ayear) ? about.ayear : 0 %>">+</span>
+                    <span class="stat-label">Years Experience</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="stats-text-block">
+     <a href="/portfolio" class="link-with-arrow group">
+       View all projects <i class="fas fa-arrow-right"></i>
+     </a>
+    </div>
                     
 <!-- ===== SERVICES SECTION ===== -->
 <section id="services" class="services">

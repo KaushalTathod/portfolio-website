@@ -13,12 +13,14 @@
                 <% if (blog && blog.length) { %>
                     <% for (let i = 0; i < blog.length; i++) { %>
                        <article class="blog-card" onclick="window.location.href='/blog/<%= blog[i].bid %>'" style="cursor:pointer;">
-                        <img src="/<%= blog[i].bimg %>" alt="<%= blog[i].btitle %>" />
-                        <div class="blog-content">
-                            <span class="blog-date"><%= blog[i].bdate %></span>
-                            <h3><%= blog[i].btitle %></h3>
-                        </div>
-                    </article>
+                            <img src="/<%= blog[i].bimg %>" alt="<%= blog[i].btitle %>" />
+                            <div class="blog-content">
+                                <span class="blog-date">
+                                    <%= new Date(blog[i].bdate).toLocaleDateString('en-US', { weekday: 'long', day: 'numeric', month: 'long' }) %>
+                                </span>
+                                <h3><%= blog[i].btitle %></h3>
+                            </div>
+                        </article>
                     <% } %>
                 <% } else { %>
                     <p style="margin:0; opacity:0.8;">No blog posts found.</p>

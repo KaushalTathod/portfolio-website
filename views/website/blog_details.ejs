@@ -1,51 +1,39 @@
-
 <%- include('header') %>
 
 <!-- ===== BLOG DETAILS SECTION ===== -->
 <section class="blog">
     <div class="container">
 
-        <!-- Section Header -->
-        <div class="section-header">
-            <span class="section-tag">Blog</span>
-            <h2 class="section-title"><%= blog.btitle %></h2>
-            <p class="section-desc"><%= blog.bdate %></p>
-        </div>
-
         <div class="row justify-content-center">
-            <div class="col-lg-10">
+            <div class="col-lg-8">
 
-                <!-- Blog Image -->
-                <img
-                    src="/<%= blog.bimg %>"
-                    alt="<%= blog.btitle %>"
-                    class="img-fluid rounded mb-4"
-                    style="width:100%; max-height:500px; object-fit:cover;">
+                <article class="blog-detail-card">
 
-                <!-- Blog Card -->
-                <article class="blog-card">
-
-                    <div class="blog-content">
-
-                        <span class="blog-date">
-                            <%= blog.bdate %>
+                    <!-- Meta info -->
+                    <div class="blog-detail-meta">
+                        <span class="blog-detail-date">
+                            <i class="far fa-calendar-alt"></i>
+                            <%= new Date(blog.bdate).toLocaleDateString('en-US', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }) %>
                         </span>
-
-                        <h3>
-                            <%= blog.btitle %>
-                        </h3>
-
-                        <p style="white-space: pre-line; line-height:1.9;">
-                            <%= blog.bcontent %>
-                        </p>
-
-                        <button
-                            class="btn btn-primary mt-3"
-                            onclick="window.location.href='/blog'">
-                            ← Back to Blogs
-                        </button>
-
                     </div>
+
+                    <!-- Title -->
+                    <h1 class="blog-detail-title"><%= blog.btitle %></h1>
+
+                    <!-- Divider -->
+                    <div class="blog-detail-divider"></div>
+
+                    <!-- Content -->
+                    <div class="blog-detail-content">
+                        <%= blog.bcontent %>
+                    </div>
+
+                    <!-- Back button -->
+                    <button
+                        class="btn btn-primary mt-4"
+                        onclick="window.location.href='/blog'">
+                        ← Back to Blogs
+                    </button>
 
                 </article>
 
@@ -56,4 +44,3 @@
 </section>
 
 <%- include('footer') %>
-

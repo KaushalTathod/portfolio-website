@@ -372,54 +372,7 @@ if (!isTouch && !prefersReducedMotion) {
 });
 
 // proffesion
-document.addEventListener('DOMContentLoaded', () => {
-    const el = document.getElementById('proffesion');
-    if (!el) return;
 
-    const phrases = el.dataset.phrases.split('|').map(p => p.trim()).filter(Boolean);
-
-    // Sirf ek hi phrase hai to animation ki zaroorat nahi
-    if (phrases.length <= 1) return;
-
-    // Reduced motion users ke liye animation skip
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-    let phraseIndex = 0;
-    let charIndex = 0;
-    let isDeleting = false;
-
-    const typingSpeed = 100;
-    const deletingSpeed = 30;
-    const pauseAfterType = 1600;
-    const pauseAfterDelete = 400;
-
-    function type() {
-        const currentPhrase = phrases[phraseIndex];
-
-        if (isDeleting) {
-            charIndex--;
-            el.textContent = currentPhrase.substring(0, charIndex);
-        } else {
-            charIndex++;
-            el.textContent = currentPhrase.substring(0, charIndex);
-        }
-
-        let delay = isDeleting ? deletingSpeed : typingSpeed;
-
-        if (!isDeleting && charIndex === currentPhrase.length) {
-            delay = pauseAfterType;
-            isDeleting = true;
-        } else if (isDeleting && charIndex === 0) {
-            isDeleting = false;
-            phraseIndex = (phraseIndex + 1) % phrases.length;
-            delay = pauseAfterDelete;
-        }
-
-        setTimeout(type, delay);
-    }
-
-    type();
-});
 
 document.addEventListener('DOMContentLoaded', () => {
     const layer = document.getElementById('starsLayer');

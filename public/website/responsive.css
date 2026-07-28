@@ -266,17 +266,29 @@
         font-size: 0.9rem;
     }
 
-    /* --- Blog marquee cards --- */
+    /* --- Blog: stack cards vertically, kill the marquee --- */
+    .blog-scroll-wrapper {
+        overflow: visible;
+    }
+
+    .blog-grid {
+        display: flex !important;
+        flex-direction: column !important;
+        flex-wrap: nowrap !important;
+        animation: none !important;
+        transform: none !important;
+        width: 100% !important;
+        gap: 1.25rem;
+    }
+
     .blog-card {
-        flex: 0 0 280px;
+        flex: 0 0 auto !important;
+        width: 100% !important;
+        max-width: 100%;
     }
 
     .blog-fade {
-        width: 60px;
-    }
-
-    .blog-grid:not(#blogGrid) {
-        grid-template-columns: 1fr;
+        display: none;
     }
 
     /* --- Testimonials --- */
@@ -420,13 +432,17 @@
         transform: translateY(0);
     }
 
-    /* --- Blog --- */
+    /* --- Blog: keep stacked, just tighten spacing/sizing --- */
+    .blog-grid {
+        gap: 1rem;
+    }
+
     .blog-card {
-        flex: 0 0 240px;
+        width: 100%;
     }
 
     .blog-img-wrap {
-        height: 180px;
+        height: 200px;
     }
 
     /* --- Link with arrow pill --- */
@@ -536,6 +552,7 @@
 
     .stat-item {
         padding: 8px;
+        min-width: 0; /* avoid overflow inside grid cells */
     }
 
     .stat-number {
@@ -546,9 +563,13 @@
         font-size: 0.8rem;
     }
 
-    /* --- Blog card smaller on tiny screens --- */
+    /* --- Blog: still stacked (inherited from 768px), just tighter --- */
     .blog-card {
-        flex: 0 0 220px;
+        width: 100%;
+    }
+
+    .blog-img-wrap {
+        height: 170px;
     }
 
     .blog-content {
@@ -621,11 +642,16 @@
     }
 
     .blog-card {
-        flex: 0 0 190px;
+        width: 100%;
     }
 
     .blog-img-wrap {
         height: 150px;
+    }
+
+    #navMenu ul li a {
+        font-size: 0.6rem;
+        padding: 0.25rem 0.3rem;
     }
 }
 
@@ -644,6 +670,11 @@
 
     #navbar {
         top: 0.5rem;
+    }
+
+    /* Keep blog list from feeling too tall in short landscape viewports */
+    .blog-img-wrap {
+        height: 140px;
     }
 }
 
@@ -673,5 +704,29 @@
     .portfolio-overlay .portfolio-link {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+/* =========================================================
+   9. SAFETY NET — universal fixes across all breakpoints
+   ========================================================= */
+
+/* Prevent horizontal scroll caused by any fixed-width element */
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+/* Images should never overflow their container on any screen */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Long words/links shouldn't break layout on very small screens */
+@media (max-width: 480px) {
+    p, h1, h2, h3, h4, a {
+        word-wrap: break-word;
+        overflow-wrap: break-word;
     }
 }
