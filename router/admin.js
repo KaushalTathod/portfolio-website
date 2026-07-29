@@ -66,7 +66,7 @@ router.use(session({
     resave: false,
     saveUninitialized: false,  
     cookie: {
-        maxAge: 1000 * 60 * 60 * 24, 
+        // maxAge removed to create session-only cookie (expires on browser close)
         httpOnly: true,
         secure: process.env.NODE_ENV === 'production'  
     }
@@ -76,7 +76,7 @@ function session_check(req,res,next){
     if(req.session.username){
         next();
     }else{
-        res.redirect('/login');
+        res.redirect('/admin/login');
     }
 }
 //helperfunction middlerware for resusable 
@@ -321,6 +321,90 @@ router.post('/reset_password', async (req, res) => {
     delete req.session.otp_verified;
     
     res.redirect('/admin/login');
+});
+
+router.get('/change_password', session_check, async (req, res) => {
+    try {
+        var username = req.session.username;
+        var sql = `SELECT * FROM login WHERE username=?`;
+        var data = await exe(sql, [username]);
+        var email = data.length > 0 ? data[0].email : '';
+        
+        res.render('admin/change_password.ejs', { 
+            error: req.session.error || null, 
+            success: req.session.success || null,
+            old_username: username,
+            old_email: email
+        });
+        req.session.error = null;
+        req.session.success = null;
+    } catch (e) {
+        console.error(e);
+        res.redirect('/admin/');
+    }
+});
+
+router.post('/change_password_save', session_check, async (req, res) => {
+    try {
+        var current_username = req.session.username;
+        var { new_username, new_email, old_password, new_password } = req.body;
+        
+        new_username = new_username ? new_username.trim() : "";
+        new_email = new_email ? new_email.trim() : "";
+        new_password = new_password ? new_password.trim() : "";
+
+        var sql = `SELECT * FROM login WHERE username=?`;
+        var data = await exe(sql, [current_username]);
+        
+        if (data.length > 0) {
+            const match = await bcrypt.compare(old_password, data[0].pass);
+            if (match) {
+                let update_username = new_username || current_username;
+                let update_email = new_email || data[0].email;
+                let hashPassword = data[0].pass;
+
+                if (update_username !== current_username) {
+                    let checkUser = await exe(`SELECT * FROM login WHERE username=?`, [update_username]);
+                    if (checkUser.length > 0) {
+                        req.session.error = "Username is already taken. Please choose another.";
+                        return res.redirect('/admin/change_password');
+                    }
+                }
+
+                if (update_email !== data[0].email) {
+                    let checkEmail = await exe(`SELECT * FROM login WHERE email=?`, [update_email]);
+                    if (checkEmail.length > 0) {
+                        req.session.error = "Email is already taken. Please choose another.";
+                        return res.redirect('/admin/change_password');
+                    }
+                }
+
+                if(new_password) {
+                    if (new_password.length < 4) {
+                        req.session.error = "New password must be at least 4 characters long.";
+                        return res.redirect('/admin/change_password');
+                    }
+                    hashPassword = await bcrypt.hash(new_password, 10);
+                }
+                
+                await exe(`UPDATE login SET username=?, email=?, pass=? WHERE username=?`, [update_username, update_email, hashPassword, current_username]);
+                
+                req.session.username = update_username;
+                req.session.success = "Profile updated successfully!";
+                return res.redirect('/admin/change_password');
+            } else {
+                req.session.error = "Old password is wrong.";
+                return res.redirect('/admin/change_password');
+            }
+        } else {
+            req.session.error = "User not found.";
+            return res.redirect('/admin/change_password');
+        }
+    } catch (error) {
+        console.error(error);
+        req.session.error = "Something went wrong while updating your profile.";
+        res.redirect('/admin/change_password');
+    }
 });
 
 router.get('/logout',(req,res)=>{
