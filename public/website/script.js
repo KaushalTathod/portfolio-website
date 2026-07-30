@@ -410,3 +410,53 @@ for (let i = 0; i < shootingStarCount; i++) {
     layer.appendChild(shoot);
 }
 });
+
+document.addEventListener('DOMContentLoaded', function () {
+  const el = document.getElementById('proffesion');
+  if (!el) return;
+
+  // "|" 
+  const raw = el.getAttribute('data-phrases') || el.textContent;
+  const phrases = raw.split('|').map(p => p.trim()).filter(Boolean);
+
+  let phraseIndex = 0;
+  let charIndex = 0;
+  let isDeleting = false;
+
+  const typingSpeed = 80;      
+  const deletingSpeed = 40;    
+  const pauseAfterType = 1500; 
+  const pauseAfterDelete = 300;
+
+  function type() {
+    const currentPhrase = phrases[phraseIndex];
+
+    if (!isDeleting) {
+      el.textContent = currentPhrase.substring(0, charIndex + 1);
+      charIndex++;
+
+      // 
+      if (charIndex === currentPhrase.length) {
+        isDeleting = true;
+        setTimeout(type, pauseAfterType);
+        return;
+      }
+    } else {
+      el.textContent = currentPhrase.substring(0, charIndex - 1);
+      charIndex--;
+
+      // 
+      if (charIndex === 0) {
+        isDeleting = false;
+        phraseIndex = (phraseIndex + 1) % phrases.length;
+        setTimeout(type, pauseAfterDelete);
+        return;
+      }
+    }
+
+    setTimeout(type, isDeleting ? deletingSpeed : typingSpeed);
+  }
+
+  el.classList.add('typing-cursor');
+  type();
+});
