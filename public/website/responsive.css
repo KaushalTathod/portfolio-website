@@ -156,6 +156,9 @@
     #navMenu ul li a::after {
         display: none;
     }
+    #navMenu ul li a i {
+        display: none;
+    }
 
     .mobile-toggle {
         display: none !important;
