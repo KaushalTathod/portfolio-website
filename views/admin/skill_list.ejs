@@ -1,57 +1,76 @@
 <%- include('header') %>
 
 <div class="page-content">
-    <div class="container-fluid">
+    <div class="container-fluid px-4">
 
         <!-- Page Header -->
-        <div class="page-header d-flex justify-content-between align-items-center mb-4">
-            <div>
-                <h2 class="fw-bold">Skill List Management</h2>
-                <p class="text-muted mb-0">Welcome back, Here's your overview</p>
-            </div>
-
-            <div>
-                <a href="/admin/skill_add" class="btn btn-primary">
-                    <i class="fas fa-plus me-2"></i>Add Skill
-                </a>
-            </div>
+        <div class="page-header-bar">
+            <h2>SKILL</h2>
+            <a href="/admin/skill_add" class="header-action-btn" title="Add New">+</a>
         </div>
 
-        <!-- Skill Table -->
-        <div class="card shadow-sm border-0">
-            <div class="card-body p-0">
+        <div class="row">
+            <div class="col-12">
 
-                <table class="table table-hover align-middle mb-0">
-                    <thead class="table-light">
-                        <tr>
-                            <th width="70">Id</th>
-                            <th>Tech Name</th>
-                            <th width="180">Tech Per(%)</th>
-                            <th width="170">Status</th>
-                        </tr>
-                    </thead>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover align-middle mb-0">
 
-                    <tbody>
-                        <% for(let i=0;i<skill.length;i++){ %>
-                        <tr>
-                            <td><%= i+1 %></td>
-                            <td><strong><%= skill[i].tech_name %></strong></td>
-                            <td><strong><%= skill[i].tech_per %></strong></td>
-                            <td>
-                                <a href="/admin/delete_skill/<%= skill[i].tid %>" class="btn btn-danger btn-sm">
-                                    <i class="fas fa-trash"></i>
-                                </a>
+                        <thead class="table-light">
+                            <tr>
+                                <th width="80">#</th>
+                                <th>Technical Skill</th>
+                                <th width="180">Percentage (%)</th>
+                                <th width="160" class="text-center">Action</th>
+                            </tr>
+                        </thead>
 
-                                <a href="/admin/edit_skill/<%= skill[i].tid %>" class="btn btn-warning btn-sm">
-                                    <i class="fas fa-pen"></i>
-                                </a>
-                            </td>
-                        </tr>
-                        <% } %>
-                        
-                    </tbody>
+                        <tbody>
+                            <% if(skill.length > 0){ %>
 
-                </table>
+                                <% for(let i = 0; i < skill.length; i++){ %>
+                                    <tr>
+                                        <td><%= i + 1 %></td>
+
+                                        <td>
+                                            <strong><%= skill[i].tech_name %></strong>
+                                        </td>
+
+                                        <td>
+                                            <%= skill[i].tech_per %>%
+                                        </td>
+
+                                        <td class="text-center">
+
+                                            <a href="/admin/edit_skill/<%= skill[i].tid %>"
+                                                class="btn btn-warning btn-sm me-1"
+                                                title="Edit">
+                                                <i class="fas fa-pen"></i>
+                                            </a>
+
+                                            <a href="/admin/delete_skill/<%= skill[i].tid %>"
+                                                class="btn btn-danger btn-sm"
+                                                title="Delete"
+                                                onclick="return confirm('Are you sure you want to delete this skill?')">
+                                                <i class="fas fa-trash"></i>
+                                            </a>
+
+                                        </td>
+                                    </tr>
+                                <% } %>
+
+                            <% } else { %>
+
+                                <tr>
+                                    <td colspan="4" class="text-center py-4">
+                                        No skills found.
+                                    </td>
+                                </tr>
+
+                            <% } %>
+                        </tbody>
+
+                    </table>
+                </div>
 
             </div>
         </div>

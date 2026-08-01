@@ -10,7 +10,13 @@
                 <span class="hero-greeting">Hello, I'm</span>
                 <h1><%= (hero && hero.hname) ? hero.hname : 'Your Name' %></h1>
 
-                <h2 id="proffesion" data-phrases="<%= (hero && hero.hprofession) ? hero.hprofession : 'Creative Developer' %>"><%= (hero && hero.hprofession) ? hero.hprofession : 'Creative Developer' %></h2>
+                <h2>
+                    <span>-</span>
+                    <span id="proffesion"
+                        data-phrases="<%= (hero && hero.hprofession) ? hero.hprofession : 'Creative Developer' %>">
+                        <%= (hero && hero.hprofession) ? hero.hprofession : 'Creative Developer' %>
+                    </span>
+                </h2>
 
                 <p><%= (hero && hero.habout) ? hero.habout : '' %></p>
 

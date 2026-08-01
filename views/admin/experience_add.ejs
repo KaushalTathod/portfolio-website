@@ -1,28 +1,55 @@
 <%- include('header') %>
 
 <div class="page-content">
-    <div class="container-fluid">
+    <div class="container-fluid px-4">
 
         <!-- Page Header -->
-        <div class="page-header d-flex justify-content-between align-items-center">
-            <div>
-                <h1 class="h3 mb-1">Add Experience</h1>
-                <p class="text-muted small mb-0">Add your skills here</p>
-            </div>
+        <div class="page-header-bar">
+            <h2>EXPERIENCE</h2>
+            <a href="/admin/experience_list" class="header-action-btn" title="View List">−</a>
         </div>
-        <div class="crow g-4">
-            <div class="col-12">
-                <form action="/admin/experience_add_save" method="post">
-                    <label>Experience Duration</label>
-                    <input type="text" name="exp_duration" class="form-control mb-4">
-                    <label>Position</label>
-                    <input type="text" name="exp_position" class="form-control mb-4">
-                    <label>Company</label>
-                    <input type="text" name="exp_company" class="form-control mb-4">
-                    <label>Description</label>
-                    <input type="text" name="exp_desc" class="form-control mb-4">
-                    <button class="btn btn-primary ">Save</button>
+
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">Add Experience</h5>
+            </div>
+
+            <div class="card-body">
+
+                <form action="/admin/experience_add_save" method="POST">
+
+                    <div class="row g-3">
+
+                        <div class="col-lg-6">
+                            <label class="form-label">Experience Duration</label>
+                            <input type="text" name="exp_duration" class="form-control" required>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <label class="form-label">Position</label>
+                            <input type="text" name="exp_position" class="form-control" required>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <label class="form-label">Company</label>
+                            <input type="text" name="exp_company" class="form-control" required>
+                        </div>
+
+                        <div class="col-12">
+                            <label class="form-label">Description</label>
+                            <input type="text" name="exp_desc" class="form-control" required>
+                        </div>
+
+                    </div>
+
+                    <div class="mt-4">
+                        <button type="submit" class="btn btn-primary">
+                            Save Experience
+                        </button>
+                    </div>
+
                 </form>
+
             </div>
         </div>
 
@@ -30,3 +57,4 @@
 </div>
 
 <%- include('footer') %>
+

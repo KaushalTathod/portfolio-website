@@ -1,12 +1,6 @@
-/* =========================================================
-   RESPONSIVE.CSS
-   Breakpoints used: 1200px, 992px, 768px, 640px, 480px, 380px
-   Import this AFTER your main style.css
-   ========================================================= */
+/* Responsive breakpoints: 1200, 992, 768, 640, 480, 380px. Import after style.css */
 
-/* =========================================================
-   1. LARGE SCREENS (≤1200px) — container tightens slightly
-   ========================================================= */
+/* Large screens ≤1200px */
 @media (max-width: 1200px) {
     :root {
         --container-width: 100%;
@@ -25,11 +19,9 @@
     }
 }
 
-/* =========================================================
-   2. TABLET LANDSCAPE (≤992px)
-   ========================================================= */
+/* Tablet landscape ≤992px */
 @media (max-width: 992px) {
-    /* --- Navbar --- */
+    /* Navbar */
     .nav-container {
         padding: 0.65rem 1.25rem;
     }
@@ -43,7 +35,7 @@
         font-size: 0.95rem;
     }
 
-    /* --- About --- */
+    /* About */
     .about-grid {
         grid-template-columns: 1fr;
         gap: 40px;
@@ -54,34 +46,34 @@
         margin: 0 auto;
     }
 
-    /* --- Resume / Skills + Education --- */
+    /* Resume / skills + education */
     .resume-grid {
         grid-template-columns: 1fr;
         gap: 50px;
     }
 
-    /* --- Services --- */
+    /* Services */
     .services-grid {
         grid-template-columns: repeat(2, 1fr);
     }
 
-    /* --- Portfolio --- */
+    /* Portfolio */
     .portfolio-grid {
         grid-template-columns: repeat(2, 1fr);
     }
 
-    /* --- Blog (grid fallback if not using marquee) --- */
+    /* Blog grid fallback (non-marquee) */
     .blog-grid:not(#blogGrid) {
         grid-template-columns: repeat(2, 1fr);
     }
 
-    /* --- Contact --- */
+    /* Contact */
     .contact-grid {
         grid-template-columns: 1fr;
         gap: 40px;
     }
 
-    /* --- Stats --- */
+    /* Stats */
     .stat-grid {
         padding: 2.25rem 1.5rem;
         gap: 1.5rem;
@@ -92,9 +84,7 @@
     }
 }
 
-/* =========================================================
-   3. TABLET PORTRAIT / SMALL LAPTOP (≤768px)
-   ========================================================= */
+/* Tablet portrait / small laptop ≤768px */
 @media (max-width: 768px) {
     body {
         margin-top: 20px;
@@ -108,9 +98,7 @@
         padding: 0 20px;
     }
 
-    /* --- Navbar ---
-       Everything stays in ONE row: Logo | links | theme toggle.
-       No hamburger dropdown — links just shrink to fit. */
+    /* Navbar: stays in one row, no hamburger menu */
     #navbar {
         top: 0.75rem;
         padding: 0 0.75rem;
@@ -169,7 +157,7 @@
         flex-shrink: 0;
     }
 
-    /* --- Hero --- */
+    /* Hero */
     .hero {
         padding: 100px 0 60px;
         text-align: center;
@@ -209,7 +197,7 @@
         display: none;
     }
 
-    /* --- Section headers --- */
+    /* Section headers */
     .section-title {
         font-size: 2rem;
     }
@@ -218,7 +206,7 @@
         font-size: 1rem;
     }
 
-    /* --- About --- */
+    /* About */
     .about-experience-badge {
         padding: 14px 18px;
         bottom: -14px;
@@ -233,7 +221,7 @@
         grid-template-columns: 1fr;
     }
 
-    /* --- Stats --- */
+    /* Stats */
     .stat-grid {
         flex-direction: row;
         flex-wrap: wrap;
@@ -243,18 +231,18 @@
         min-width: 45%;
     }
 
-    /* --- Experience cards --- */
+    /* Experience cards */
     .experience .timeline {
         grid-template-columns: 1fr;
     }
 
-    /* --- Services --- */
+    /* Services */
     .services-grid {
         grid-template-columns: 1fr;
         gap: 20px;
     }
 
-    /* --- Portfolio --- */
+    /* Portfolio */
     .portfolio-grid {
         grid-template-columns: 1fr;
         gap: 20px;
@@ -269,7 +257,7 @@
         font-size: 0.9rem;
     }
 
-    /* --- Blog: stack cards vertically, kill the marquee --- */
+    /* Blog: stack cards, disable marquee */
     .blog-scroll-wrapper {
         overflow: visible;
     }
@@ -294,7 +282,7 @@
         display: none;
     }
 
-    /* --- Testimonials --- */
+    /* Testimonials */
     .testimonial-card {
         padding: 28px 20px;
     }
@@ -304,12 +292,12 @@
         gap: 8px;
     }
 
-    /* --- Contact --- */
+    /* Contact */
     .contact-form-container {
         padding: 1.5rem;
     }
 
-    /* --- Footer --- */
+    /* Footer */
     .footer {
         padding: 3rem 1.25rem 1.5rem;
         text-align: center;
@@ -330,12 +318,12 @@
         justify-content: center;
     }
 
-    /* --- Cursor (disable on touch-ish widths too) --- */
+    /* Cursor: disable on small screens */
     .cursor {
         display: none;
     }
 
-    /* --- Back to top --- */
+    /* Back to top button */
     #back-to-top {
         width: 44px;
         height: 44px;
@@ -345,9 +333,7 @@
     }
 }
 
-/* =========================================================
-   4. LARGE MOBILE (≤640px)
-   ========================================================= */
+/* Large mobile ≤640px */
 @media (max-width: 640px) {
     :root {
         --section-padding: 56px 0;
@@ -386,7 +372,7 @@
         width: 18px;
     }
 
-    /* --- Stats --- */
+    /* Stats */
     .stat-item {
         min-width: 100%;
         padding: 12px;
@@ -396,14 +382,14 @@
         font-size: 2.1rem;
     }
 
-    /* --- Skills --- */
+    /* Skills */
     .skills-container h3,
     .timeline-container h3 {
         font-size: 1.4rem;
         margin-bottom: 20px;
     }
 
-    /* --- Edu / Experience cards --- */
+    /* Edu / experience cards */
     .edu-card,
     .experience .timeline-item {
         padding: 18px 16px;
@@ -416,7 +402,7 @@
         font-size: 0.75rem;
     }
 
-    /* --- Service card --- */
+    /* Service card */
     .service-card {
         padding: 28px 20px;
     }
@@ -427,7 +413,7 @@
         font-size: 1.4rem;
     }
 
-    /* --- Portfolio overlay always visible on touch --- */
+    /* Portfolio overlay: always visible on touch */
     .portfolio-overlay h3,
     .portfolio-overlay p,
     .portfolio-overlay .portfolio-link {
@@ -435,7 +421,7 @@
         transform: translateY(0);
     }
 
-    /* --- Blog: keep stacked, just tighten spacing/sizing --- */
+    /* Blog: tighter spacing */
     .blog-grid {
         gap: 1rem;
     }
@@ -448,13 +434,13 @@
         height: 200px;
     }
 
-    /* --- Link with arrow pill --- */
+    /* Arrow link pill */
     .link-with-arrow {
         padding: 13px 22px;
         font-size: 0.9rem;
     }
 
-    /* --- Lightbox --- */
+    /* Lightbox */
     .lightbox {
         padding: 16px;
     }
@@ -466,9 +452,7 @@
     }
 }
 
-/* =========================================================
-   5. SMALL MOBILE (≤480px)
-   ========================================================= */
+/* Small mobile ≤480px */
 @media (max-width: 480px) {
     .container {
         padding: 0 16px;
@@ -512,7 +496,7 @@
     }
 
     #navMenu ul li a i {
-        display: none; /* icons hidden at this size, text only */
+        display: none; /* icons hidden, text only */
     }
 
     #themeToggle {
@@ -545,7 +529,7 @@
         font-size: 0.9rem;
     }
 
-    /* --- Stats grid becomes a 2-col grid for tidiness --- */
+    /* Stats: 2-column grid */
     .stat-grid {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
@@ -555,7 +539,7 @@
 
     .stat-item {
         padding: 8px;
-        min-width: 0; /* avoid overflow inside grid cells */
+        min-width: 0; /* avoid overflow */
     }
 
     .stat-number {
@@ -566,7 +550,7 @@
         font-size: 0.8rem;
     }
 
-    /* --- Blog: still stacked (inherited from 768px), just tighter --- */
+    /* Blog: tighter spacing */
     .blog-card {
         width: 100%;
     }
@@ -583,27 +567,25 @@
         font-size: 1rem;
     }
 
-    /* --- Contact item icons --- */
+    /* Contact icons */
     .contact-item i {
         width: 42px;
         height: 42px;
         font-size: 1.3rem;
     }
 
-    /* --- Footer logo --- */
+    /* Footer logo */
     .footer-brand .logo img {
         margin: 0 auto 1rem;
     }
 
-    /* --- Shooting star tail shorter on very small screens --- */
+    /* Shorter shooting star tail */
     .shooting-star::before {
         width: 80px;
     }
 }
 
-/* =========================================================
-   6. EXTRA SMALL / OLDER PHONES (≤380px)
-   ========================================================= */
+/* Extra small phones ≤380px */
 @media (max-width: 380px) {
     .hero-text h1 {
         font-size: 1.6rem;
@@ -658,9 +640,7 @@
     }
 }
 
-/* =========================================================
-   7. LANDSCAPE PHONES (short height, wide width)
-   ========================================================= */
+/* Landscape phones, short height */
 @media (max-height: 480px) and (orientation: landscape) {
     .hero {
         min-height: auto;
@@ -675,15 +655,13 @@
         top: 0.5rem;
     }
 
-    /* Keep blog list from feeling too tall in short landscape viewports */
+    /* Keep blog list short in landscape */
     .blog-img-wrap {
         height: 140px;
     }
 }
 
-/* =========================================================
-   8. TOUCH DEVICES — remove hover-only interactions
-   ========================================================= */
+/* Touch devices: remove hover-only interactions */
 @media (hover: none), (pointer: coarse) {
     .cursor {
         display: none;
@@ -710,23 +688,21 @@
     }
 }
 
-/* =========================================================
-   9. SAFETY NET — universal fixes across all breakpoints
-   ========================================================= */
+/* Safety net: universal fixes for all breakpoints */
 
-/* Prevent horizontal scroll caused by any fixed-width element */
+/* prevent horizontal scroll */
 html, body {
     max-width: 100%;
     overflow-x: hidden;
 }
 
-/* Images should never overflow their container on any screen */
+/* images never overflow container */
 img {
     max-width: 100%;
     height: auto;
 }
 
-/* Long words/links shouldn't break layout on very small screens */
+/* prevent long words from breaking layout */
 @media (max-width: 480px) {
     p, h1, h2, h3, h4, a {
         word-wrap: break-word;
@@ -776,7 +752,7 @@ img {
     50% { transform: translate(-30px, 30px) scale(1.08) !important; }
 }
 
-/* ---------- 2 column layout: text | image ---------- */
+/* 2-column layout: text | image */
 .hero-content {
     display: grid !important;
     grid-template-columns: 1fr 1fr !important;
@@ -805,7 +781,7 @@ img {
     animation: heroFadeUp 0.7s var(--ease-smooth) 0.1s forwards;
 }
 
-/* ---------- LEFT: Text ---------- */
+/* Left: text */
 .hero-text h1 {
     font-size: 3.2rem !important;
     font-weight: 900 !important;
@@ -881,7 +857,7 @@ img {
     transform: translateY(-3px) !important;
 }
 
-/* ---------- RIGHT: Hero image (RECTANGLE) ---------- */
+/* Right: hero image */
 .hero-image {
     position: relative !important;
     display: flex !important;
@@ -995,7 +971,7 @@ img {
     background: var(--bg-color) !important;
     border: 1px solid var(--border-color) !important;
     border-radius: 0.9rem !important;
-    padding: 14px 16px 4px !important; /* Bottom padding 8px se 4px kar diya */
+    padding: 14px 16px 4px !important; /* reduced bottom padding */
     box-shadow: 0 10px 22px -10px var(--shadow-hover) !important;
     transition: transform 0.4s var(--ease-smooth), box-shadow 0.4s var(--ease-smooth) !important;
     white-space: nowrap !important;
@@ -1040,9 +1016,7 @@ img {
     60% { transform: translateX(-50%) translateY(-5px) !important; }
 }
 
-/* =========================================================
-   RESPONSIVE BREAKPOINTS
-   ========================================================= */
+/* Hero responsive breakpoints */
 
 /* Large laptops / smaller desktops */
 @media (max-width: 1400px) {

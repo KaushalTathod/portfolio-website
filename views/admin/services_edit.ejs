@@ -1,29 +1,66 @@
 <%- include('header') %>
 
 <div class="page-content">
-    <div class="container-fluid">
+    <div class="container-fluid px-4">
 
         <!-- Page Header -->
-        <div class="page-header d-flex justify-content-between align-items-center">
-            <div>
-                <h1 class="h3 mb-1">Edit Service</h1>
-                <p class="text-muted small mb-0">Modify your service details</p>
-            </div>
+        <div class="page-header-bar">
+            <h2>SERVICES</h2>
+            <a href="/admin/services_list" class="header-action-btn" title="View List">−</a>
         </div>
-        <div class="crow g-4">
-            <div class="col-12">
-                <form action="/admin/update_service" method="post">
-                    <input type="hidden" name="sid" value="<%= services.sid %>">
-                    <label>Service Technology</label>
-                    <input type="text" name="ser_technology" value="<%= services.ser_technology %>" class="form-control mb-4">
-                    <label>Description</label>
-                    <input type="text" name="ser_discription" value="<%= services.ser_discription %>" class="form-control mb-4">
-                    <button class="btn btn-primary ">Update</button>
-                </form>
+
+        <div class="card">
+
+            <div class="card-header">
+                <h5 class="mb-0">Update Service</h5>
             </div>
+
+            <div class="card-body">
+
+                <form action="/admin/update_service" method="POST">
+
+                    <input type="hidden" name="sid" value="<%= services.sid %>">
+
+                    <div class="row g-3">
+
+                        <div class="col-lg-6 col-md-6">
+                            <label class="form-label">Service Technology</label>
+                            <input
+                                type="text"
+                                name="ser_technology"
+                                value="<%= services.ser_technology %>"
+                                class="form-control"
+                                placeholder="Enter Service Technology"
+                                required>
+                        </div>
+
+                        <div class="col-lg-6 col-md-6">
+                            <label class="form-label">Description</label>
+                            <input
+                                type="text"
+                                name="ser_discription"
+                                value="<%= services.ser_discription %>"
+                                class="form-control"
+                                placeholder="Enter Description"
+                                required>
+                        </div>
+
+                    </div>
+
+                    <div class="mt-4">
+                        <button type="submit" class="btn btn-primary">
+                            Update Service
+                        </button>
+                    </div>
+
+                </form>
+
+            </div>
+
         </div>
 
     </div>
 </div>
 
 <%- include('footer') %>
+

@@ -1,58 +1,79 @@
 <%- include('header') %>
 
 <div class="page-content">
-    <div class="container-fluid">
+    <div class="container-fluid px-4">
 
-        <div class="page-header">
-            <h1 class="h3 mb-1">Update Project</h1>
-            <p class="text-muted small mb-0">Update Project Information</p>
+        <!-- Page Header -->
+        <div class="page-header-bar">
+            <h2>PROJECTS</h2>
+            <a href="/admin/projects_list" class="header-action-btn" title="View List">−</a>
         </div>
 
-        <div class="row">
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-body">
+        <div class="card">
 
-                        <form action="/admin/project_update_save" method="post" enctype="multipart/form-data">
+            <div class="card-header">
+                <h5 class="mb-0">Update Project</h5>
+            </div>
 
-                            <input type="hidden" name="pid" value="<%= project.pid %>">
+            <div class="card-body">
 
-                            <div class="mb-3">
-                                <label>Project Name</label>
-                                <input type="text" name="pname" class="form-control"
-                                    value="<%= project.pname %>">
-                            </div>
+                <form action="/admin/project_update_save" method="POST" enctype="multipart/form-data">
 
-                            <div class="mb-3">
-                                <label>Project Type</label>
-                                <input type="text" name="ptype" class="form-control"
-                                    value="<%= project.ptype %>">
-                            </div>
+                    <input type="hidden" name="pid" value="<%= project.pid %>">
 
-                            <div class="mb-3">
-                                <label>Project Image</label>
-                                <input type="file" name="pimg" class="form-control">
-                            </div>
+                    <div class="row g-3">
 
+                        <div class="col-lg-6 col-md-6">
+                            <label class="form-label">Project Name</label>
+                            <input
+                                type="text"
+                                name="pname"
+                                value="<%= project.pname %>"
+                                class="form-control"
+                                placeholder="Enter Project Name"
+                                required>
+                        </div>
+
+                        <div class="col-lg-6 col-md-6">
+                            <label class="form-label">Project Type</label>
+                            <input
+                                type="text"
+                                name="ptype"
+                                value="<%= project.ptype %>"
+                                class="form-control"
+                                placeholder="Enter Project Type"
+                                required>
+                        </div>
+
+                        <div class="col-lg-6 col-md-6">
+                            <label class="form-label">Project Image</label>
+                            <input type="file" name="pimg" class="form-control">
                             <input type="hidden" name="old_img" value="<%= project.pimg %>">
+                        </div>
 
-                            <div class="mb-3">
-                                <label>Current Image</label><br>
-                                <img src="/<%= project.pimg %>" width="150">
+                        <div class="col-lg-6 col-md-6">
+                            <label class="form-label">Current Image</label>
+                            <div>
+                                <img src="/<%= project.pimg %>" width="150" class="img-thumbnail">
                             </div>
-
-                            <button type="submit" class="btn btn-primary">
-                                <i class="fas fa-save me-2"></i>Update Project
-                            </button>
-
-                        </form>
+                        </div>
 
                     </div>
-                </div>
+
+                    <div class="mt-4">
+                        <button type="submit" class="btn btn-primary">
+                            Update Project
+                        </button>
+                    </div>
+
+                </form>
+
             </div>
+
         </div>
 
     </div>
 </div>
 
 <%- include('footer') %>
+

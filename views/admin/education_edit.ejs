@@ -1,31 +1,77 @@
 <%- include('header') %>
 
 <div class="page-content">
-    <div class="container-fluid">
+    <div class="container-fluid px-4">
 
         <!-- Page Header -->
-        <div class="page-header d-flex justify-content-between align-items-center">
-            <div>
-                <h1 class="h3 mb-1">Edit Education</h1>
-                <p class="text-muted small mb-0">Modify your education details</p>
-            </div>
+        <div class="page-header-bar">
+            <h2>EDUCATION</h2>
+            <a href="/admin/education_list" class="header-action-btn" title="View List">−</a>
         </div>
-        <div class="crow g-4">
-            <div class="col-12">
-                <form action="/admin/update_education" method="post">
-                    <input type="hidden" name="eid" value="<%= education.eid %>">
-                    <label>Education Duration</label>
-                    <input type="text" name="eyear" value="<%= education.eyear %>" class="form-control mb-4">
-                    <label>Degree</label>
-                    <input type="text" name="edegree" value="<%= education.edegree %>" class="form-control mb-4">
-                    <label>University</label>
-                    <input type="text" name="eunivercity" value="<%= education.eunivercity %>" class="form-control mb-4">
-                    <button class="btn btn-primary ">Update</button>
-                </form>
+
+        <div class="card">
+
+            <div class="card-header">
+                <h5 class="mb-0">Update Education</h5>
             </div>
+
+            <div class="card-body">
+
+                <form action="/admin/update_education" method="POST">
+
+                    <input type="hidden" name="eid" value="<%= education.eid %>">
+
+                    <div class="row g-3">
+
+                        <div class="col-lg-6 col-md-6">
+                            <label class="form-label">Education Duration</label>
+                            <input
+                                type="text"
+                                name="eyear"
+                                value="<%= education.eyear %>"
+                                class="form-control"
+                                placeholder="Enter Education Duration"
+                                required>
+                        </div>
+
+                        <div class="col-lg-6 col-md-6">
+                            <label class="form-label">Degree</label>
+                            <input
+                                type="text"
+                                name="edegree"
+                                value="<%= education.edegree %>"
+                                class="form-control"
+                                placeholder="Enter Degree"
+                                required>
+                        </div>
+
+                        <div class="col-lg-6 col-md-6">
+                            <label class="form-label">University</label>
+                            <input
+                                type="text"
+                                name="eunivercity"
+                                value="<%= education.eunivercity %>"
+                                class="form-control"
+                                placeholder="Enter University"
+                                required>
+                        </div>
+
+                    </div>
+
+                    <div class="mt-4">
+                        <button type="submit" class="btn btn-primary">
+                            Update Education
+                        </button>
+                    </div>
+
+                </form>
+
+            </div>
+
         </div>
 
     </div>
 </div>
 
 <%- include('footer') %>
+

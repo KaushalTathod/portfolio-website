@@ -1,47 +1,65 @@
 <%- include('header') %>
 
 <div class="page-content">
-    <div class="container-fluid">
+    <div class="container-fluid px-4">
 
         <!-- Page Header -->
-        <div class="page-header d-flex justify-content-between align-items-center">
-            <div>
-                <h1 class="h3 mb-1">Add Service</h1>
-                <p class="text-muted small mb-0">Add your skills here</p>
-            </div>
+        <div class="page-header-bar">
+            <h2>SERVICES</h2>
+            <a href="/admin/services_list" class="header-action-btn" title="View List">−</a>
         </div>
 
-        <div class="row g-4">
-            <div class="col-12">
-                <form action="/admin/services_add_save" method="post">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">Add Service</h5>
+            </div>
 
-                    <label>Service Technology</label>
-                    <input type="text" name="ser_technology" class="form-control mb-4">
+            <div class="card-body">
 
-                    <label>Description</label>
-                    <input type="text" name="ser_discription" class="form-control mb-4">
+                <form action="/admin/services_add_save" method="POST">
 
-                    <label>Select Icon</label>
-                    <select name="ser_icon" class="form-control mb-4">
-                        <option value="fa-code">💻 Code</option>
-                        <option value="fa-laptop-code">🖥 Laptop Code</option>
-                        <option value="fa-globe">🌐 Globe</option>
-                        <option value="fa-mobile-alt">📱 Mobile</option>
-                        <option value="fa-database">🗄 Database</option>
-                        <option value="fa-server">🖧 Server</option>
-                        <option value="fa-cloud">☁ Cloud</option>
-                        <option value="fa-palette">🎨 UI/UX Design</option>
-                        <option value="fa-shield-alt">🛡 Security</option>
-                        <option value="fa-chart-line">📈 Analytics</option>
-                        <option value="fa-cogs">⚙ Settings</option>
-                        <option value="fa-network-wired">🔗 Networking</option>
-                        <option value="fa-robot">🤖 AI</option>
-                        <option value="fa-lock">🔒 Lock</option>
-                    </select>
+                    <div class="row g-3">
 
-                    <button class="btn btn-primary">Save</button>
+                        <div class="col-lg-6">
+                            <label class="form-label">Service Technology</label>
+                            <input type="text" name="ser_technology" class="form-control" required>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <label class="form-label">Description</label>
+                            <input type="text" name="ser_discription" class="form-control" required>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <label class="form-label">Select Icon</label>
+                            <select name="ser_icon" class="form-select">
+                                <option value="fa-code">💻 Code</option>
+                                <option value="fa-laptop-code">🖥 Laptop Code</option>
+                                <option value="fa-globe">🌐 Globe</option>
+                                <option value="fa-mobile-alt">📱 Mobile</option>
+                                <option value="fa-database">🗄 Database</option>
+                                <option value="fa-server">🖧 Server</option>
+                                <option value="fa-cloud">☁ Cloud</option>
+                                <option value="fa-palette">🎨 UI/UX Design</option>
+                                <option value="fa-shield-alt">🛡 Security</option>
+                                <option value="fa-chart-line">📈 Analytics</option>
+                                <option value="fa-cogs">⚙ Settings</option>
+                                <option value="fa-network-wired">🔗 Networking</option>
+                                <option value="fa-robot">🤖 AI</option>
+                                <option value="fa-lock">🔒 Lock</option>
+                            </select>
+                        </div>
+
+                    </div>
+
+                    <div class="mt-4">
+                        <button type="submit" class="btn btn-primary">
+                            Save Service
+                        </button>
+                    </div>
 
                 </form>
+
             </div>
         </div>
 
@@ -49,3 +67,4 @@
 </div>
 
 <%- include('footer') %>
+

@@ -7,30 +7,24 @@ document.addEventListener('DOMContentLoaded', () => {
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const isTouch = window.matchMedia('(hover: none), (pointer: coarse)').matches;
 
-  /* ---------------------------------------------------------
-     0. Number the Experience section's card badges (01, 02…)
-  --------------------------------------------------------- */
+  /* 0. Number the Experience section's card badges (01, 02…) */
   document.querySelectorAll('.experience .timeline-dot').forEach((dot, i) => {
     dot.setAttribute('data-index', String(i + 1).padStart(2, '0'));
   });
 
-  /* ---------------------------------------------------------
-     1. Loader — hide once the page has finished loading
-  --------------------------------------------------------- */
+  /* 1. Loader — hide once the page has finished loading */
   const loader = document.getElementById('loader');
   if (loader) {
     window.addEventListener('load', () => {
       setTimeout(() => loader.classList.add('hidden'), 300);
     });
-    // Safety net in case 'load' already fired before this script ran
+    // fallback in case 'load' already fired before this script ran
     if (document.readyState === 'complete') {
       setTimeout(() => loader.classList.add('hidden'), 300);
     }
   }
 
-  /* ---------------------------------------------------------
-     2. Navbar: scrolled state + active link highlighting
-  --------------------------------------------------------- */
+  /* 2. Navbar: scrolled state + active link highlighting */
   const navbar = document.getElementById('navbar');
   if (navbar) {
     const onScroll = () => {
@@ -60,9 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
     sections.forEach(sec => sectionObserver.observe(sec));
   }
 
-  /* ---------------------------------------------------------
-     3. Mobile menu toggle
-  --------------------------------------------------------- */
+  /* 3. Mobile menu toggle */
   const mobileToggle = document.querySelector('.mobile-toggle');
   const navMenuList = document.querySelector('#navMenu ul');
   if (mobileToggle && navMenuList) {
@@ -78,9 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  /* ---------------------------------------------------------
-     4. Theme toggle (persisted in localStorage)
-  --------------------------------------------------------- */
+  /* 4. Theme toggle (persisted in localStorage) */
   const themeToggle = document.getElementById('themeToggle');
   const root = document.documentElement;
   const savedTheme = localStorage.getItem('portfolio-theme');
@@ -103,10 +93,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-/* ---------------------------------------------------------
-   5. Custom cursor (desktop only) — simple, single dot
---------------------------------------------------------- */
-if (!isTouch && !prefersReducedMotion) {
+  /* 5. Custom cursor (desktop only) — simple, single dot */
+  if (!isTouch && !prefersReducedMotion) {
     const cursor = document.createElement('div');
     cursor.className = 'cursor';
     document.body.appendChild(cursor);
@@ -119,13 +107,9 @@ if (!isTouch && !prefersReducedMotion) {
         el.addEventListener('mouseenter', () => cursor.classList.add('is-active'));
         el.addEventListener('mouseleave', () => cursor.classList.remove('is-active'));
     });
-}
+  }
 
-// o
-
-  /* ---------------------------------------------------------
-     6. Scroll-reveal (stats, timeline, services, portfolio, blog…)
-  --------------------------------------------------------- */
+  /* 6. Scroll-reveal (stats, timeline, services, portfolio, blog…) */
   function revealAndUnobserve(entries, obs) {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -140,9 +124,7 @@ if (!isTouch && !prefersReducedMotion) {
     '.section-header, .stat-item, .timeline, .timeline-item, .service-card, .portfolio-item, .blog-card, .reveal-up'
   ).forEach(el => revealObserver.observe(el));
 
-  /* ---------------------------------------------------------
-     7. Animated stat counters (data-count="123")
-  --------------------------------------------------------- */
+  /* 7. Animated stat counters (data-count="123") */
   function animateCount(el) {
     const target = parseFloat(el.getAttribute('data-count'));
     if (isNaN(target)) return;
@@ -177,9 +159,7 @@ if (!isTouch && !prefersReducedMotion) {
 
   document.querySelectorAll('.stat-item').forEach(el => countObserver.observe(el));
 
-  /* ---------------------------------------------------------
-     8. Animated skill progress bars (data-percent="85")
-  --------------------------------------------------------- */
+  /* 8. Animated skill progress bars (data-percent="85") */
   const skillObserver = new IntersectionObserver((entries, obs) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -195,9 +175,7 @@ if (!isTouch && !prefersReducedMotion) {
 
   document.querySelectorAll('.skill-item').forEach(el => skillObserver.observe(el));
 
-  /* ---------------------------------------------------------
-     9. Portfolio filter
-  --------------------------------------------------------- */
+  /* 9. Portfolio filter */
   const filterBtns = document.querySelectorAll('.filter-btn');
   const portfolioItems = document.querySelectorAll('.portfolio-item');
   filterBtns.forEach(btn => {
@@ -221,9 +199,7 @@ if (!isTouch && !prefersReducedMotion) {
     });
   });
 
-  /* ---------------------------------------------------------
-     10. Lightbox
-  --------------------------------------------------------- */
+  /* 10. Lightbox */
   const lightbox = document.querySelector('.lightbox');
   const lightboxImg = document.querySelector('.lightbox-content');
   const closeLightbox = document.querySelector('.close-lightbox');
@@ -246,9 +222,7 @@ if (!isTouch && !prefersReducedMotion) {
   }
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') hideLightbox(); });
 
-  /* ---------------------------------------------------------
-     11. Testimonial slider
-  --------------------------------------------------------- */
+  /* 11. Testimonial slider */
   const track = document.querySelector('.testimonial-track');
   const cards = document.querySelectorAll('.testimonial-card');
   const dotsWrap = document.querySelector('.slider-dots');
@@ -286,9 +260,7 @@ if (!isTouch && !prefersReducedMotion) {
     });
   }
 
-  /* ---------------------------------------------------------
-     12. Back to top button
-  --------------------------------------------------------- */
+  /* 12. Back to top button */
   const backToTop = document.getElementById('back-to-top');
   if (backToTop) {
     window.addEventListener('scroll', () => {
@@ -300,9 +272,7 @@ if (!isTouch && !prefersReducedMotion) {
     });
   }
 
-  /* ---------------------------------------------------------
-     13. Scroll progress bar
-  --------------------------------------------------------- */
+  /* 13. Scroll progress bar */
   let progressBar = document.getElementById('scroll-progress');
   if (!progressBar) {
     progressBar = document.createElement('div');
@@ -317,9 +287,7 @@ if (!isTouch && !prefersReducedMotion) {
   window.addEventListener('scroll', updateProgress, { passive: true });
   updateProgress();
 
-  /* ---------------------------------------------------------
-     14. Contact form validation (client-side, non-blocking)
-  --------------------------------------------------------- */
+  /* 14. Contact form validation (client-side, non-blocking) */
   const contactForm = document.querySelector('.contact-form-container form');
   if (contactForm) {
     contactForm.addEventListener('submit', (e) => {
@@ -344,8 +312,8 @@ if (!isTouch && !prefersReducedMotion) {
         return;
       }
 
-      // Let the form submit normally if it has a real action;
-      // otherwise show an inline success message instead of a hard navigation.
+      // if the form has a real action, let it submit normally;
+      // otherwise show an inline success message instead of navigating
       if (!contactForm.getAttribute('action')) {
         e.preventDefault();
         const success = contactForm.querySelector('.form-success');
@@ -363,24 +331,21 @@ if (!isTouch && !prefersReducedMotion) {
     });
   }
 
-  /* ---------------------------------------------------------
-     15. Footer year (optional element: <span id="year"></span>)
-  --------------------------------------------------------- */
+  /* 15. Footer year (optional element: <span id="year"></span>) */
   const yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
 });
 
-// proffesion
 
-
+/* Starfield background — twinkling stars + shooting stars (dark mode) */
 document.addEventListener('DOMContentLoaded', () => {
     const layer = document.getElementById('starsLayer');
     if (!layer) return;
 
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-    // ===== Background twinkling stars =====
+    // background twinkling stars
     const starCount = window.innerWidth < 768 ? 60 : 120;
     for (let i = 0; i < starCount; i++) {
         const star = document.createElement('div');
@@ -395,27 +360,28 @@ document.addEventListener('DOMContentLoaded', () => {
         layer.appendChild(star);
     }
 
-    // ===== Shooting stars =====
-const shootingStarCount = 6;
-for (let i = 0; i < shootingStarCount; i++) {
-    const shoot = document.createElement('div');
-    shoot.className = 'shooting-star';
-    
-    const duration = 5 + Math.random() * 3; // 5-8s
-    
-    shoot.style.setProperty('--start-top', `${Math.random() * 40}%`);
-    shoot.style.setProperty('--start-left', `${Math.random() * 40}%`);
-    shoot.style.setProperty('--duration', `${duration}s`);
-    shoot.style.setProperty('--delay', `-${Math.random() * duration}s`); // NEGATIVE delay
-    layer.appendChild(shoot);
-}
+    // shooting stars
+    const shootingStarCount = 6;
+    for (let i = 0; i < shootingStarCount; i++) {
+        const shoot = document.createElement('div');
+        shoot.className = 'shooting-star';
+
+        const duration = 5 + Math.random() * 3; // 5-8s
+
+        shoot.style.setProperty('--start-top', `${Math.random() * 40}%`);
+        shoot.style.setProperty('--start-left', `${Math.random() * 40}%`);
+        shoot.style.setProperty('--duration', `${duration}s`);
+        shoot.style.setProperty('--delay', `-${Math.random() * duration}s`); // negative delay so stars start mid-flight
+        layer.appendChild(shoot);
+    }
 });
 
+/* Typing effect for the profession/role text (element id="proffesion") */
 document.addEventListener('DOMContentLoaded', function () {
   const el = document.getElementById('proffesion');
   if (!el) return;
 
-  // "|" 
+  // phrases are separated by "|" in data-phrases (or the element's own text)
   const raw = el.getAttribute('data-phrases') || el.textContent;
   const phrases = raw.split('|').map(p => p.trim()).filter(Boolean);
 
@@ -423,9 +389,9 @@ document.addEventListener('DOMContentLoaded', function () {
   let charIndex = 0;
   let isDeleting = false;
 
-  const typingSpeed = 80;      
-  const deletingSpeed = 40;    
-  const pauseAfterType = 1500; 
+  const typingSpeed = 80;
+  const deletingSpeed = 40;
+  const pauseAfterType = 1500;
   const pauseAfterDelete = 300;
 
   function type() {
@@ -435,7 +401,7 @@ document.addEventListener('DOMContentLoaded', function () {
       el.textContent = currentPhrase.substring(0, charIndex + 1);
       charIndex++;
 
-      // 
+      // finished typing the phrase — pause, then start deleting
       if (charIndex === currentPhrase.length) {
         isDeleting = true;
         setTimeout(type, pauseAfterType);
@@ -445,7 +411,7 @@ document.addEventListener('DOMContentLoaded', function () {
       el.textContent = currentPhrase.substring(0, charIndex - 1);
       charIndex--;
 
-      // 
+      // finished deleting — move to the next phrase
       if (charIndex === 0) {
         isDeleting = false;
         phraseIndex = (phraseIndex + 1) % phrases.length;

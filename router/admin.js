@@ -167,13 +167,9 @@ router.post('/forget', otpLimiter, async (req, res) => {
 
             // Generate OTP
             var otp = Math.floor(100000 + Math.random() * 900000).toString();
-
-
             req.session.reset_email = email;
             req.session.reset_otp = otp;
             req.session.otp_expires = Date.now() + 5 * 60 * 1000;
-
-
 
             // Gmail SMTP
             var transporter = nodemailer.createTransport({
@@ -193,8 +189,6 @@ router.post('/forget', otpLimiter, async (req, res) => {
 
             });
 
-
-
             // SMTP Test
             transporter.verify((error, success) => {
 
@@ -205,8 +199,6 @@ router.post('/forget', otpLimiter, async (req, res) => {
                 }
 
             });
-
-
 
             var mailOptions = {
 
@@ -225,48 +217,24 @@ router.post('/forget', otpLimiter, async (req, res) => {
 
             };
 
-
             console.log("Before sending OTP mail");
-
-
             await transporter.sendMail(mailOptions);
-
-
             console.log("After sending OTP mail");
             console.log("OTP email sent successfully");
-
-
             return res.redirect('/admin/verify_otp');
-
-
 
         } else {
 
-
             console.log("Email not found");
-
             req.session.error = "Email not found in our records.";
-
             return res.redirect('/admin/forget');
-
-
         }
 
-
-
     } catch (error) {
-
-
         console.log("OTP MAIL ERROR:", error);
-
-
         req.session.error = "Error sending email. Check server config.";
-
         return res.redirect('/admin/forget');
-
-
     }
-
 });
 
 router.get('/verify_otp',otpLimiter, (req, res) => {
@@ -300,14 +268,11 @@ router.get('/reset_password', (req, res) => {
 
 router.post('/reset_password', async (req, res) => {
     if (!req.session.otp_verified) return res.redirect('/admin/forget');
-    
     var { new_password, confirm_password } = req.body;
-    
     if (new_password !== confirm_password) {
         req.session.error = "Passwords do not match.";
         return res.redirect('/admin/reset_password');
     }
-    
     var email = req.session.reset_email;
     var sql = `update login set pass=? where email=?`;
     const hashPassword = await bcrypt.hash(new_password, 10);
@@ -1012,7 +977,7 @@ router.post('/blog_update_save',session_check, async (req, res) => {
         var { bid, bdate, btitle, bcontent, old_img } = req.body;
         var imgname = old_img;
 
-        if (req.files && req.files.bimg) {   // 👈 bug fix: pehle 'pimg' tha, ab 'bimg'
+        if (req.files && req.files.bimg) {  
             const img = req.files.bimg;
 
             if (!isValidImage(img)) {

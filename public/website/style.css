@@ -1,6 +1,6 @@
-/* ===== 1. CSS Variables & Reset ===== */
+/* ===== 1. Variables & Reset ===== */
 :root {
-    /* Color Palette — shaded black/neutral theme, no blue */
+    /* Color palette — neutral/black theme, no blue */
     --primary-color: #18181b;      /* darkest — buttons, key CTAs */
     --secondary-color: #3f3f46;
     --accent-color: #52525b;
@@ -31,7 +31,7 @@
     --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-slow: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 
-    /* Border Radius */
+    /* Border radius */
     --radius: 12px;
     --radius-full: 50px;
 
@@ -40,8 +40,7 @@
     --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
     --stagger: 0.08s;
 
-    /* Zinc scale — the shading system. Used everywhere so nothing
-       reads as flat/monotone: 900 = darkest, 50 = lightest. */
+    /* Zinc scale — shading system, 900 = darkest, 50 = lightest */
     --zinc-50:  #fafafa;
     --zinc-100: #f4f4f5;
     --zinc-200: #e4e4e7;
@@ -55,7 +54,7 @@
     --zinc-950: #09090b;
 }
 
-/* Dark Mode Variables */
+/* Dark mode variables */
 [data-theme="dark"] {
     --bg-color: #1a1a2e;
     --bg-light: #16213e;
@@ -121,7 +120,7 @@ ul {
     list-style: none;
 }
 
-/* Container — very small side padding; real width now controlled by --container-width */
+/* Container width controlled by --container-width */
 .container {
     max-width: var(--container-width);
     margin: 0 auto;
@@ -172,7 +171,7 @@ ul {
     vertical-align: middle;
 }
 
-/* h1 / section-title — solid color with black shading (drop shadow) */
+/* h1 / section-title with drop shadow */
 h1,
 .section-title {
     font-size: 2.8rem;
@@ -212,7 +211,7 @@ h1,
     cursor: pointer;
 }
 
-/* Orange button — white text */
+/* Orange button, white text */
 .btn-primary {
     background: var(--btn-orange);
     color: #fff;
@@ -251,7 +250,7 @@ h1,
     transform: translateY(-1px) scale(0.97);
 }
 
-/* White button — black text */
+/* White button, black text */
 .btn-secondary {
     background: #ffffff;
     color: #000000;
@@ -529,7 +528,7 @@ h1,
     50% { transform: translate(-30px, 30px) scale(1.08); }
 }
 
-/* ---------- 2 column layout: text | image ---------- */
+/* 2-column layout: text | image */
 .hero-content {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -558,7 +557,7 @@ h1,
     animation: heroFadeUp 0.7s var(--ease-smooth) 0.1s forwards;
 }
 
-/* ---------- LEFT: Text ---------- */
+/* Left: text */
 .hero-text h1 {
     font-size: 3.2rem;
     font-weight: 900;
@@ -634,7 +633,7 @@ h1,
     transform: translateY(-3px);
 }
 
-/* ---------- RIGHT: Hero image (RECTANGLE) ---------- */
+/* Right: hero image */
 .hero-image {
     position: relative;
     display: flex;
@@ -1046,7 +1045,7 @@ h1,
     100% { transform: translateX(100%); }
 }
 
-/* ===== Education cards — numbered, stacked vertically ===== */
+/* Education cards — numbered, stacked vertically */
 .edu-timeline {
     padding-left: 0;
     display: flex;
@@ -1233,9 +1232,7 @@ h1,
     font-size: 0.95rem;
 }
 
-/* ---------------------------------------------------------
-   Experience section override: numbered card grid
---------------------------------------------------------- */
+/* Experience section override: numbered card grid */
 .experience {
     position: relative;
 }
@@ -1903,7 +1900,7 @@ h1,
     color: var(--text-light);
 }
 
-/* Contact Form */
+/* Contact form */
 .contact-form-container {
     background: linear-gradient(to bottom right, rgba(250, 250, 250, 0.8), rgba(244, 244, 245, 0.8));
     backdrop-filter: blur(8px);
@@ -2003,7 +2000,7 @@ h1,
     display: flex;
 }
 
-/* ===== 15. Footer — full width, theme-aware ===== */
+/* ===== 15. Footer ===== */
 .footer {
     position: relative;
     padding: 2rem 1.5rem 1.5rem; 
@@ -2015,7 +2012,7 @@ h1,
 
 .footer-content {
     display: grid;
-    gap: 1.5rem;  /* 3rem se 1.5rem kar diya */
+    gap: 1.5rem;  /* reduced from 3rem */
     max-width: 72rem;
     margin: 0 auto;
 }
@@ -2090,7 +2087,7 @@ h1,
     0%, 100% { transform: scale(1); }
     50% { transform: scale(1.25); }
 }
-/* ===== Simple custom cursor — desktop only, single dot ===== */
+/* Custom cursor — desktop only, single dot */
 .cursor {
     position: fixed;
     top: 0;
@@ -2235,7 +2232,7 @@ h1,
     transform: translateY(0);
 }
 
-/* Navigation Link */
+/* Navigation link */
 nav ul li a {
     display: flex;
     align-items: center;
@@ -2294,7 +2291,7 @@ nav ul li a i {
     color: #2d2c2c;
 }
 
-/* ===== Galaxy / Shooting Star Background — dark mode only ===== */
+/* Galaxy / shooting star background — dark mode only */
 .galaxy-bg {
     position: fixed;
     inset: 0;
@@ -2323,7 +2320,7 @@ nav ul li a i {
     50% { opacity: 1; transform: scale(1.2); }
 }
 
-/* ===== Shooting Star ===== */
+/* Shooting star */
 .shooting-star {
     position: absolute;
     top: var(--start-top, 0);
@@ -2378,7 +2375,7 @@ nav ul li a i {
 @media (max-width: 768px) {
     .shooting-star::before { width: 100px; }
 }
-/* ===== 21. Dark mode: sections transparent taaki stars pura page cover karein ===== */
+/* ===== 21. Dark mode: make sections transparent so the star background shows through the whole page ===== */
 [data-theme="dark"] .hero,
 [data-theme="dark"] .about,
 [data-theme="dark"] .resume,

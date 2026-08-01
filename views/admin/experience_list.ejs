@@ -1,61 +1,86 @@
 <%- include('header') %>
 
 <div class="page-content">
-    <div class="container-fluid">
+    <div class="container-fluid px-4">
 
         <!-- Page Header -->
-        <div class="page-header d-flex justify-content-between align-items-center mb-4">
-            <div>
-                <h2 class="fw-bold">Experience List </h2>
-                <p class="text-muted mb-0">Welcome back, Here's your overview</p>
-            </div>
-
-            <div>
-                <a href="/admin/experience_add" class="btn btn-primary">
-                    <i class="fas fa-plus me-2"></i>Add Experience
-                </a>
-            </div>
+        <div class="page-header-bar">
+            <h2>EXPERIENCE</h2>
+            <a href="/admin/experience_add" class="header-action-btn" title="Add New">+</a>
         </div>
 
-        <!-- Skill Table -->
-        <div class="card shadow-sm border-0">
-            <div class="card-body p-0">
+        <div class="row">
+            <div class="col-12">
 
-                <table class="table table-hover align-middle mb-0">
-                    <thead class="table-light">
-                        <tr>
-                            <th width="70">Id</th>
-                            <th>Experience Duration</th>
-                            <th width="180">Position</th>
-                            <th width="180">Company</th>
-                            <th width="170">Description</th>
-                            <th width="170">Status</th>
-                        </tr>
-                    </thead>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover align-middle mb-0">
 
-                    <tbody>
-                        <% for(let i=0;i<experience.length;i++){ %>
-                        <tr>
-                            <td><%= i+1 %></td>
-                            <td><strong><%= experience[i].exp_duration %></strong></td>
-                            <td><strong><%= experience[i].exp_position %></strong></td>
-                            <td><strong><%= experience[i].exp_company %></strong></td>
-                            <td><strong><%= experience[i].exp_desc %></strong></td>
-                            <td>
-                                <a href="/admin/delete_experience/<%= experience[i].eid %>" class="btn btn-danger btn-sm">
-                                    <i class="fas fa-trash"></i>
-                                </a>
+                        <thead class="table-light">
+                            <tr>
+                                <th width="80">#</th>
+                                <th>Experience Duration</th>
+                                <th width="180">Position</th>
+                                <th width="180">Company</th>
+                                <th width="200">Description</th>
+                                <th width="160" class="text-center">Action</th>
+                            </tr>
+                        </thead>
 
-                                <a href="/admin/edit_experience/<%= experience[i].eid %>" class="btn btn-warning btn-sm">
-                                    <i class="fas fa-pen"></i>
-                                </a>
-                            </td>
-                        </tr>
-                        <% } %>
-                        
-                    </tbody>
+                        <tbody>
+                            <% if(experience.length > 0){ %>
 
-                </table>
+                                <% for(let i = 0; i < experience.length; i++){ %>
+                                    <tr>
+                                        <td><%= i + 1 %></td>
+
+                                        <td>
+                                            <strong><%= experience[i].exp_duration %></strong>
+                                        </td>
+
+                                        <td>
+                                            <%= experience[i].exp_position %>
+                                        </td>
+
+                                        <td>
+                                            <%= experience[i].exp_company %>
+                                        </td>
+
+                                        <td>
+                                            <%= experience[i].exp_desc %>
+                                        </td>
+
+                                        <td class="text-center">
+
+                                            <a href="/admin/edit_experience/<%= experience[i].eid %>"
+                                                class="btn btn-warning btn-sm me-1"
+                                                title="Edit">
+                                                <i class="fas fa-pen"></i>
+                                            </a>
+
+                                            <a href="/admin/delete_experience/<%= experience[i].eid %>"
+                                                class="btn btn-danger btn-sm"
+                                                title="Delete"
+                                                onclick="return confirm('Are you sure you want to delete this experience?')">
+                                                <i class="fas fa-trash"></i>
+                                            </a>
+
+                                        </td>
+                                    </tr>
+                                <% } %>
+
+                            <% } else { %>
+
+                                <tr>
+                                    <td colspan="6" class="text-center py-4">
+                                        No experience found.
+                                    </td>
+                                </tr>
+
+                            <% } %>
+                        </tbody>
+
+                    </table>
+                </div>
 
             </div>
         </div>
@@ -64,3 +89,4 @@
 </div>
 
 <%- include('footer') %>
+
