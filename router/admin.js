@@ -53,7 +53,7 @@ const otpLimiter = rateLimit({
     standardHeaders: true,
     legacyHeaders: false
 });
-//middlerware for fileuplad
+//middlerware for fileupload 
 router.use(fileupload({
     limits: { fileSize: 2 * 1024 * 1024 },
     abortOnLimitReached: true,
